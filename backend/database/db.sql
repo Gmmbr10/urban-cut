@@ -61,3 +61,14 @@ ALTER TABLE dias_funcionamento ADD CONSTRAINT FOREIGN KEY (id_barbearia) REFEREN
 ALTER TABLE atendimentos ADD CONSTRAINT FOREIGN KEY (id_barbearia) REFERENCES barbearias(id_barbearia);
 ALTER TABLE atendimentos ADD CONSTRAINT FOREIGN KEY (id_barbeiro) REFERENCES barbeiros(id_barbeiro);
 ALTER TABLE atendimentos ADD CONSTRAINT FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente);
+
+CREATE TABLE IF NOT EXISTS horarios_bloqueados (
+    id_horario_bloqueado INT AUTO_INCREMENT PRIMARY KEY,
+    id_barbeiro INT NOT NULL,
+    inicio TIME NOT NULL,
+    fim TIME NOT NULL,
+    created_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT NOW() ON UPDATE NOW()
+);
+
+ALTER TABLE horarios_bloqueados ADD CONSTRAINT FOREIGN KEY (id_barbeiro) REFERENCES barbeiros(id_barbeiro);
