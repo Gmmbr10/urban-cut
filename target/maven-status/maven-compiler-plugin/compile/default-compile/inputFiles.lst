@@ -1,0 +1,13 @@
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/Database.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/Model.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/Repository.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/Response.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/Service.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/interfaces/AuthenticableInterface.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/core/interfaces/RepositoryInterface.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/models/Barbeiro.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/models/Cliente.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/repositories/BarbeiroRepository.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/repositories/ClienteRepository.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/services/BarbeiroService.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/services/ClienteService.java
