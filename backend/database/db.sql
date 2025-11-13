@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS barbeiros (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(120) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
-    id_barbearia INT NOT NULL,
+    id_barbearia INT,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT NOW() ON UPDATE NOW()
 );
