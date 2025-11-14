@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class ClienteRepository extends Repository implements RepositoryInterface<Cliente>, AuthenticableInterface<Cliente> {
     @Override
-    public boolean save(Cliente model) throws SQLException {
+    public void save(Cliente model) throws SQLException {
         String query = "INSERT INTO clientes (nome,email,senha) VALUES (?,?,?)";
         PreparedStatement stm = this.database.prepareStatement(query);
 
@@ -19,7 +19,7 @@ public class ClienteRepository extends Repository implements RepositoryInterface
         stm.setString(2, model.getEmail());
         stm.setString(3, model.getSenha());
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override
@@ -41,8 +41,8 @@ public class ClienteRepository extends Repository implements RepositoryInterface
     }
 
     @Override
-    public boolean update(Cliente model) throws SQLException {
-        String query = "UPDATE clientes SET nome=?,email=?,senha=? WHERE id_clientes=?";
+    public void update(Cliente model) throws SQLException {
+        String query = "UPDATE clientes SET nome=?,email=?,senha=? WHERE id_cliente =?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
         stm.setString(1, model.getNome());
@@ -50,17 +50,17 @@ public class ClienteRepository extends Repository implements RepositoryInterface
         stm.setString(3, model.getSenha());
         stm.setInt(4, model.getIdCliente());
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         String query = "DELETE FROM clientes WHERE id_cliente = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
         stm.setInt(1, id);
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override

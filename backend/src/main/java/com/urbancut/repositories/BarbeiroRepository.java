@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class BarbeiroRepository extends Repository implements RepositoryInterface<Barbeiro>, AuthenticableInterface<Barbeiro> {
     @Override
-    public boolean save(Barbeiro model) throws SQLException {
+    public void save(Barbeiro model) throws SQLException {
         String query = "INSERT INTO barbeiros (nome,email,senha,id_barbearia) VALUES (?,?,?,?)";
         PreparedStatement stm = this.database.prepareStatement(query);
 
@@ -20,7 +20,7 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         stm.setString(3, model.getSenha());
         stm.setInt(4, model.getIdBarbearia());
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
     }
 
     @Override
-    public boolean update(Barbeiro model) throws SQLException {
+    public void update(Barbeiro model) throws SQLException {
         String query = "UPDATE barbeiros SET nome=?,email=?,senha=?,id_barbearia=? WHERE id_barbeiro = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
@@ -52,17 +52,17 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         stm.setInt(4, model.getIdBarbearia());
         stm.setInt(5, model.getIdBarbearia());
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override
-    public boolean delete(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         String query = "DELETE FROM barbeiros WHERE id_barbeiro = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
         stm.setInt(1, id);
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override

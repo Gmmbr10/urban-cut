@@ -13,17 +13,17 @@ import java.util.List;
 
 public class BarbeariaRepository extends Repository implements RepositoryInterface<Barbearia> {
     @Override
-    public boolean delete(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         String query = "DELETE FROM barbearias WHERE id_barbearia = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
         stm.setInt(1, id);
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override
-    public boolean update(Barbearia model) throws SQLException {
+    public void update(Barbearia model) throws SQLException {
         String query = "UPDATE barbearias SET nome=?,url_maps=?,tempo_medio=? WHERE id_barbearia = ? AND id_dono = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
@@ -33,7 +33,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         stm.setInt(4, model.getIdBarbearia());
         stm.setInt(5, model.getIdDono());
 
-        return stm.execute();
+        stm.execute();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
     }
 
     @Override
-    public boolean save(Barbearia model) throws SQLException {
+    public void save(Barbearia model) throws SQLException {
         String query = "INSERT INTO barbearias (id_dono,nome,url_maps,tempo_medio) VALUES (?,?,?,?)";
         PreparedStatement stm = this.database.prepareStatement(query);
 
@@ -89,6 +89,6 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         stm.setString(3, model.getUrlMaps());
         stm.setTime(4, Time.valueOf(model.getTempoMedioAtendimento()));
 
-        return stm.execute();
+        stm.execute();
     }
 }
