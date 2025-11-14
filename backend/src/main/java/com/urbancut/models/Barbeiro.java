@@ -86,6 +86,10 @@ public class Barbeiro extends Model {
         return idBarbearia;
     }
 
+    public void setIdBarbearia(Integer idBarbearia) {
+        this.idBarbearia = idBarbearia;
+    }
+
     @Override
     public String toString() {
         return "Barbeiro{" + "idBarbeiro=" + idBarbeiro + ", nome='" + nome + '\'' + ", email='" + email + '\'' + ", senha='" + senha + '\'' + ", idBarbearia=" + idBarbearia + '}';

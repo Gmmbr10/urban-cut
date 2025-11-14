@@ -90,5 +90,9 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         stm.setTime(4, Time.valueOf(model.getTempoMedioAtendimento()));
 
         stm.execute();
+
+        Barbeiro b = (new BarbeiroRepository()).searchById(model.getIdDono());
+        b.setIdBarbearia(stm.getGeneratedKeys().getInt(1));
+        (new BarbeiroRepository()).update(b);
     }
 }
