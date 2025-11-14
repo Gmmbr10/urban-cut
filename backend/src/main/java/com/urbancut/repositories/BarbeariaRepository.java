@@ -3,11 +3,13 @@ package com.urbancut.repositories;
 import com.urbancut.core.Repository;
 import com.urbancut.core.interfaces.RepositoryInterface;
 import com.urbancut.models.Barbearia;
+import com.urbancut.models.Barbeiro;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.List;
 
 public class BarbeariaRepository extends Repository implements RepositoryInterface<Barbearia> {
     @Override
@@ -53,9 +55,39 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
                     .urlMaps(data.getString("url_maps"))
                     .nome(data.getString("nome"))
                     .build();
+
+            barbearia.setBarbeiros(this.searchBarbeiros(barbearia.getIdBarbearia()));
         }
 
         return barbearia;
+    }
+
+    private Barbeiro[] searchBarbeiros(int id) throws SQLException {
+        List<Barbeiro> barbeiros = null;
+
+        String query = "SELECT * FROM barbeiros WHERE id_barbearia = ?";
+        PreparedStatement stm = this.database.prepareStatement(query);
+
+        stm.setInt(1, id);
+
+        ResultSet data = stm.executeQuery();
+
+        if (!data.next()) {
+            return null;
+        }
+
+        while (data.next()) {
+            Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder()
+                    .idBarbeiro(data.getInt("id_barbeiro"))
+                    .idBarbearia(data.getInt("id_barbearia"))
+                    .nome(data.getString("nome"))
+                    .senha(data.getString("senha"))
+                    .email(data.getString("email"))
+                    .build();
+            barbeiros.add(barbeiro);
+        }
+
+        return barbeiros.toArray(new Barbeiro[0]);
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.urbancut.models;
 import com.urbancut.core.Model;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Barbearia extends Model {
@@ -12,7 +11,7 @@ public class Barbearia extends Model {
     private String nome;
     private String urlMaps;
     private LocalTime tempoMedioAtendimento;
-    private List<Barbeiro> barbeiros = new ArrayList<>();
+    private Barbeiro[] barbeiros;
 
     private Barbearia(Integer idBarbearia, Integer idDono, String nome, String urlMaps, LocalTime tempoMedioAtendimento) {
         this.idBarbearia = idBarbearia;
@@ -109,8 +108,12 @@ public class Barbearia extends Model {
         this.tempoMedioAtendimento = tempoMedioAtendimento;
     }
 
-    public List<Barbeiro> getBarbeiros() {
+    public Barbeiro[] getBarbeiros() {
         return barbeiros;
+    }
+
+    public void setBarbeiros(Barbeiro[] barbeiros) {
+        this.barbeiros = barbeiros;
     }
 
     @Override
