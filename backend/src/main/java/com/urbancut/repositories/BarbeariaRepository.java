@@ -5,10 +5,8 @@ import com.urbancut.core.interfaces.RepositoryInterface;
 import com.urbancut.models.Barbearia;
 import com.urbancut.models.Barbeiro;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BarbeariaRepository extends Repository implements RepositoryInterface<Barbearia> {
@@ -50,14 +48,14 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         if (data.next()) {
             barbearia = new Barbearia.BarbeariaBuilder().idBarbearia(data.getInt("id_barbearia")).idDono(data.getInt("id_dono")).tempoMedioAtendimento(data.getTime("tempo_medio").toLocalTime()).urlMaps(data.getString("url_maps")).nome(data.getString("nome")).build();
 
-            barbearia.setBarbeiros(this.searchBarbeiros(barbearia.getIdBarbearia()));
+            barbearia.setBarbeiros(this.searchBarbeiros(id));
         }
 
         return barbearia;
     }
 
     private Barbeiro[] searchBarbeiros(int id) throws SQLException {
-        List<Barbeiro> barbeiros = null;
+        List<Barbeiro> barbeiros = new ArrayList<>();
 
         String query = "SELECT * FROM barbeiros WHERE id_barbearia = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
@@ -65,10 +63,6 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         stm.setInt(1, id);
 
         ResultSet data = stm.executeQuery();
-
-        if (!data.next()) {
-            return null;
-        }
 
         while (data.next()) {
             Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(data.getInt("id_barbeiro")).idBarbearia(data.getInt("id_barbearia")).nome(data.getString("nome")).senha(data.getString("senha")).email(data.getString("email")).build();
@@ -82,17 +76,20 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
     @Override
     public void save(Barbearia model) throws SQLException {
         String query = "INSERT INTO barbearias (id_dono,nome,url_maps,tempo_medio) VALUES (?,?,?,?)";
-        PreparedStatement stm = this.database.prepareStatement(query);
+        PreparedStatement stm = this.database.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         stm.setInt(1, model.getIdDono());
         stm.setString(2, model.getNome());
         stm.setString(3, model.getUrlMaps());
         stm.setTime(4, Time.valueOf(model.getTempoMedioAtendimento()));
 
-        stm.execute();
+        stm.executeUpdate();
+
+        ResultSet resultSet = stm.getGeneratedKeys();
+        resultSet.next();
 
         Barbeiro b = (new BarbeiroRepository()).searchById(model.getIdDono());
-        b.setIdBarbearia(stm.getGeneratedKeys().getInt(1));
+        b.setIdBarbearia(resultSet.getInt(1));
         (new BarbeiroRepository()).update(b);
     }
 }
