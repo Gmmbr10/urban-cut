@@ -85,7 +85,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
 
     public Response<Boolean> delete(HttpServletRequest request) {
 
-        int id = Integer.parseInt(request.getParameter("idCliente"));
+        int id = Integer.parseInt(request.getParameter("idBarbearia"));
 
         if (id == 0) {
             return new Response<>(400, "Falta de informações!");
