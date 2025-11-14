@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS barbeiros (
 
 CREATE TABLE IF NOT EXISTS barbearias (
     id_barbearia INT AUTO_INCREMENT PRIMARY KEY,
-    id_dono INT NOT NULL,
+    id_dono INT NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    url_endereco TEXT NOT NULL,
+    url_maps TEXT NOT NULL,
     tempo_medio TIME NOT NULL,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT NOW() ON UPDATE NOW()
