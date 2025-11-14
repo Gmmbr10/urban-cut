@@ -41,13 +41,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             return new Response<>(400, "Falta de informações!");
         }
 
-        Barbearia barbeiro = new Barbearia.BarbeariaBuilder()
-                .idDono(idDono)
-                .idBarbearia(idBarbearia)
-                .nome(nome)
-                .urlMaps(urlMaps)
-                .tempoMedioAtendimento(tempoMedioAtendimento)
-                .build();
+        Barbearia barbeiro = new Barbearia.BarbeariaBuilder().idDono(idDono).idBarbearia(idBarbearia).nome(nome).urlMaps(urlMaps).tempoMedioAtendimento(tempoMedioAtendimento).build();
 
         try {
             repository.save(barbeiro);
@@ -69,13 +63,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             return new Response<>(400, "Falta de informações!");
         }
 
-        Barbearia barbearia = new Barbearia.BarbeariaBuilder()
-                .idDono(idDono)
-                .idBarbearia(idBarbearia)
-                .nome(nome)
-                .urlMaps(urlMaps)
-                .tempoMedioAtendimento(tempoMedioAtendimento)
-                .build();
+        Barbearia barbearia = new Barbearia.BarbeariaBuilder().idDono(idDono).idBarbearia(idBarbearia).nome(nome).urlMaps(urlMaps).tempoMedioAtendimento(tempoMedioAtendimento).build();
 
         try {
             repository.update(barbearia);

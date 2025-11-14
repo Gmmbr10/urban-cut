@@ -21,7 +21,7 @@ public class Barbearia extends Model {
         this.tempoMedioAtendimento = tempoMedioAtendimento;
     }
 
-    public static class BarbeariaBuilder{
+    public static class BarbeariaBuilder {
         private Integer idBarbearia;
         private Integer idDono;
         private String nome;
@@ -54,7 +54,7 @@ public class Barbearia extends Model {
             int minutos = (int) restoMinutos;
             int segundos = (int) ((restoMinutos - minutos) * 60);
 
-            this.tempoMedioAtendimento = LocalTime.of(horas,minutos,segundos);
+            this.tempoMedioAtendimento = LocalTime.of(horas, minutos, segundos);
             return this;
         }
 
@@ -63,8 +63,8 @@ public class Barbearia extends Model {
             return this;
         }
 
-        public Barbearia build(){
-            return new Barbearia(idBarbearia,idDono,nome,urlMaps,tempoMedioAtendimento);
+        public Barbearia build() {
+            return new Barbearia(idBarbearia, idDono, nome, urlMaps, tempoMedioAtendimento);
         }
     }
 
@@ -118,12 +118,6 @@ public class Barbearia extends Model {
 
     @Override
     public String toString() {
-        return "Barbearia{" +
-                "idBarbearia=" + idBarbearia +
-                ", idDono=" + idDono +
-                ", nome='" + nome + '\'' +
-                ", urlMaps='" + urlMaps + '\'' +
-                ", tempoMedioAtendimento=" + tempoMedioAtendimento +
-                '}';
+        return "Barbearia{" + "idBarbearia=" + idBarbearia + ", idDono=" + idDono + ", nome='" + nome + '\'' + ", urlMaps='" + urlMaps + '\'' + ", tempoMedioAtendimento=" + tempoMedioAtendimento + '}';
     }
 }

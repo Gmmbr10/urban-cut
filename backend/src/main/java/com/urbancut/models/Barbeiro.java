@@ -76,12 +76,6 @@ public class Barbeiro extends Model {
 
     @Override
     public String toString() {
-        return "Barbeiro{" +
-                "idBarbeiro=" + idBarbeiro +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", idBarbearia=" + idBarbearia +
-                '}';
+        return "Barbeiro{" + "idBarbeiro=" + idBarbeiro + ", nome='" + nome + '\'' + ", email='" + email + '\'' + ", senha='" + senha + '\'' + ", idBarbearia=" + idBarbearia + '}';
     }
 }

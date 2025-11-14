@@ -48,13 +48,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            barbearia = new Barbearia.BarbeariaBuilder()
-                    .idBarbearia(data.getInt("id_barbearia"))
-                    .idDono(data.getInt("id_dono"))
-                    .tempoMedioAtendimento(data.getTime("tempo_medio").toLocalTime())
-                    .urlMaps(data.getString("url_maps"))
-                    .nome(data.getString("nome"))
-                    .build();
+            barbearia = new Barbearia.BarbeariaBuilder().idBarbearia(data.getInt("id_barbearia")).idDono(data.getInt("id_dono")).tempoMedioAtendimento(data.getTime("tempo_medio").toLocalTime()).urlMaps(data.getString("url_maps")).nome(data.getString("nome")).build();
 
             barbearia.setBarbeiros(this.searchBarbeiros(barbearia.getIdBarbearia()));
         }
@@ -77,15 +71,10 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         }
 
         while (data.next()) {
-            Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder()
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .idBarbearia(data.getInt("id_barbearia"))
-                    .nome(data.getString("nome"))
-                    .senha(data.getString("senha"))
-                    .email(data.getString("email"))
-                    .build();
+            Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(data.getInt("id_barbeiro")).idBarbearia(data.getInt("id_barbearia")).nome(data.getString("nome")).senha(data.getString("senha")).email(data.getString("email")).build();
             barbeiros.add(barbeiro);
         }
+
 
         return barbeiros.toArray(new Barbeiro[0]);
     }

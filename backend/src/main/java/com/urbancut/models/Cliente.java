@@ -66,11 +66,6 @@ public class Cliente extends Model {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "idCliente=" + idCliente +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nome='" + nome + '\'' + ", email='" + email + '\'' + ", senha='" + senha + '\'' + '}';
     }
 }

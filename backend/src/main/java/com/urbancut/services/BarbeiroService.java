@@ -40,11 +40,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             return new Response<>(400, "Falta de informações!");
         }
 
-        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder()
-                .nome(nome)
-                .email(email)
-                .senha(senha)
-                .build();
+        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).build();
 
         try {
             repository.save(barbeiro);
@@ -66,13 +62,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             return new Response<>(400, "Falta de informações!");
         }
 
-        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder()
-                .idBarbeiro(id)
-                .idBarbearia(id_barbearia)
-                .nome(nome)
-                .email(email)
-                .senha(senha)
-                .build();
+        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(id).idBarbearia(id_barbearia).nome(nome).email(email).senha(senha).build();
 
         try {
             repository.update(barbeiro);

@@ -34,12 +34,7 @@ public class ClienteRepository extends Repository implements RepositoryInterface
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            cliente = new Cliente.ClienteBuilder()
-                    .idCliente(data.getInt("id_cliente"))
-                    .nome(data.getString("nome"))
-                    .senha(data.getString("senha"))
-                    .email(data.getString("email"))
-                    .build();
+            cliente = new Cliente.ClienteBuilder().idCliente(data.getInt("id_cliente")).nome(data.getString("nome")).senha(data.getString("senha")).email(data.getString("email")).build();
         }
 
         return cliente;
@@ -80,12 +75,7 @@ public class ClienteRepository extends Repository implements RepositoryInterface
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            cliente = new Cliente.ClienteBuilder()
-                    .idCliente(data.getInt("id_cliente"))
-                    .nome(data.getString("nome"))
-                    .senha(data.getString("senha"))
-                    .email(data.getString("email"))
-                    .build();
+            cliente = new Cliente.ClienteBuilder().idCliente(data.getInt("id_cliente")).nome(data.getString("nome")).senha(data.getString("senha")).email(data.getString("email")).build();
         }
 
         return cliente;
