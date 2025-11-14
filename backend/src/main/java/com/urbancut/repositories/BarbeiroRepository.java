@@ -8,6 +8,7 @@ import com.urbancut.models.Barbeiro;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 public class BarbeiroRepository extends Repository implements RepositoryInterface<Barbeiro>, AuthenticableInterface<Barbeiro> {
     @Override
@@ -18,7 +19,12 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         stm.setString(1, model.getNome());
         stm.setString(2, model.getEmail());
         stm.setString(3, model.getSenha());
-        stm.setInt(4, model.getIdBarbearia());
+
+        if (model.getIdBarbearia() == null) {
+            stm.setNull(4, Types.INTEGER);
+        } else {
+            stm.setInt(4, model.getIdBarbearia());
+        }
 
         stm.execute();
     }
@@ -49,8 +55,14 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         stm.setString(1, model.getNome());
         stm.setString(2, model.getEmail());
         stm.setString(3, model.getSenha());
-        stm.setInt(4, model.getIdBarbearia());
-        stm.setInt(5, model.getIdBarbearia());
+
+        if (model.getIdBarbearia() == null) {
+            stm.setNull(4, Types.INTEGER);
+        } else {
+            stm.setInt(4, model.getIdBarbearia());
+        }
+
+        stm.setInt(5, model.getIdBarbeiro());
 
         stm.execute();
     }

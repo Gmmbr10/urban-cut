@@ -45,7 +45,7 @@ public class Barbeiro extends Model {
         }
 
         public BarbeiroBuilder idBarbearia(int id) {
-            this.idBarbearia = id;
+            this.idBarbearia = id == 0 ? null : id;
             return this;
         }
 
