@@ -1,9 +1,13 @@
 com/urbancut/core/interfaces/AuthenticableInterface.class
 com/urbancut/services/BarbeiroService.class
 com/urbancut/core/Database.class
+com/urbancut/models/Barbearia$BarbeariaBuilder.class
+com/urbancut/models/Barbearia.class
 com/urbancut/models/Barbeiro.class
+com/urbancut/services/BarbeariaService.class
 com/urbancut/models/Cliente$ClienteBuilder.class
 com/urbancut/models/Cliente$1.class
+com/urbancut/models/Barbearia$1.class
 com/urbancut/core/Repository.class
 com/urbancut/repositories/ClienteRepository.class
 com/urbancut/core/Service.class
@@ -13,5 +17,6 @@ com/urbancut/core/interfaces/RepositoryInterface.class
 com/urbancut/models/Cliente.class
 com/urbancut/core/Response.class
 com/urbancut/services/ClienteService.class
+com/urbancut/repositories/BarbeariaRepository.class
 com/urbancut/core/Model.class
 com/urbancut/repositories/BarbeiroRepository.class

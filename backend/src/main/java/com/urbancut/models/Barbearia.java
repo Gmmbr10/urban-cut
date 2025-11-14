@@ -72,16 +72,8 @@ public class Barbearia extends Model {
         return idBarbearia;
     }
 
-    public void setIdBarbearia(Integer idBarbearia) {
-        this.idBarbearia = idBarbearia;
-    }
-
     public Integer getIdDono() {
         return idDono;
-    }
-
-    public void setIdDono(Integer idDono) {
-        this.idDono = idDono;
     }
 
     public String getNome() {
