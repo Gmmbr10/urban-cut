@@ -18,14 +18,14 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbearia"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",null);
         }
 
         try {
             Barbearia barbearia = this.repository.searchById(id);
             return new Response<>(200, barbearia);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
         }
     }
 
@@ -37,16 +37,16 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
         if (idDono == 0 || nome == null || urlMaps == null || tempoMedioAtendimento == 0) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",false);
         }
 
         Barbearia barbearia = new Barbearia.BarbeariaBuilder().idDono(idDono).nome(nome).urlMaps(urlMaps).tempoMedioAtendimento(tempoMedioAtendimento).build();
 
         try {
             repository.save(barbearia);
-            return new Response<>(201);
+            return new Response<>(201,true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
         }
     }
 
@@ -59,16 +59,16 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
         if (idDono == 0 || nome == null || idBarbearia == 0 || urlMaps == null || tempoMedioAtendimento == 0) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",false);
         }
 
         Barbearia barbearia = new Barbearia.BarbeariaBuilder().idDono(idDono).idBarbearia(idBarbearia).nome(nome).urlMaps(urlMaps).tempoMedioAtendimento(tempoMedioAtendimento).build();
 
         try {
             repository.update(barbearia);
-            return new Response<>(204);
+            return new Response<>(204,true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
         }
 
     }
@@ -78,14 +78,14 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbearia"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",false);
         }
 
         try {
             repository.delete(id);
-            return new Response<>(204);
+            return new Response<>(204,true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
         }
 
     }

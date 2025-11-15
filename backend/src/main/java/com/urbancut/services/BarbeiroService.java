@@ -19,14 +19,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbeiro"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",null);
         }
 
         try {
             Barbeiro barbeiro = this.repository.searchById(id);
             return new Response<>(200, barbeiro);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
         }
     }
 
@@ -37,16 +37,16 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         String senha = request.getParameter("senha");
 
         if (nome == null || email == null || senha == null) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",false);
         }
 
         Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).build();
 
         try {
             repository.save(barbeiro);
-            return new Response<>(201);
+            return new Response<>(201,true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
         }
     }
 
@@ -59,16 +59,16 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         String senha = request.getParameter("senha");
 
         if (id == 0 || nome == null || email == null || senha == null) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",false);
         }
 
         Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(id).idBarbearia(id_barbearia).nome(nome).email(email).senha(senha).build();
 
         try {
             repository.update(barbeiro);
-            return new Response<>(204);
+            return new Response<>(204,true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),true);
         }
 
     }
@@ -78,14 +78,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbeiro"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!");
+            return new Response<>(400, "Falta de informações!",false);
         }
 
         try {
             repository.delete(id);
-            return new Response<>(204);
+            return new Response<>(204,true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage());
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),true);
         }
 
     }
