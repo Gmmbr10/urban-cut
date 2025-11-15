@@ -1,6 +1,7 @@
 package com.urbancut.services;
 
 import com.urbancut.core.Service;
+import com.urbancut.models.Cliente;
 import jakarta.servlet.http.HttpServletRequest;
 import com.urbancut.models.Barbeiro;
 import com.urbancut.core.Response;
@@ -27,6 +28,21 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             return new Response<>(200, barbeiro);
         } catch (SQLException e) {
             return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
+        }
+    }
+
+    public Response<Barbeiro> searchByEmail(HttpServletRequest request) {
+        String email = request.getParameter("email");
+
+        if (email == null) {
+            return new Response<>(400, "Falta de informações!",null);
+        }
+
+        try {
+            Barbeiro barbeiro = this.repository.searchByEmail(email);
+            return new Response<>(200, barbeiro);
+        } catch (SQLException e) {
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
         }
     }
 
