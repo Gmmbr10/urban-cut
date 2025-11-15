@@ -25,6 +25,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 <h2 id="exec">:runner: Executar o app</h2>
 1. Clone o repositório
+
 ```bash
 git clone https://github.com/Gmmbr10/urban-cut
 ```
