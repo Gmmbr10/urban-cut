@@ -56,7 +56,9 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             return new Response<>(400, "Falta de informações!",false);
         }
 
-        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).build();
+        Integer idBarbearia = request.getParameter("idBarbearia") != null ? Integer.parseInt(request.getParameter("idBarbearia")) : null;
+
+        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).idBarbearia(idBarbearia).build();
 
         try {
             repository.save(barbeiro);
