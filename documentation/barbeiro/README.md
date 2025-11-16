@@ -17,6 +17,9 @@ Para salvar um barbeiro, será necessário enviar os seguintes dados:
 - Nome do barbeiro: `nome`
 - Email do barbeiro: `email`
 - Senha do barbeiro: `senha`
+- Id da barbearia (opicional): `idBarbearia`
+
+> Id da barbearia serve para cadastrar os funcionários de uma barbearia. Ou seja, quando for cadastrar um funcionário, envie junto o id da barbearia.
 
 Para registrar o barbeiro, será necessário usar o método `register()` da classe `BarbeiroService`, que recebe como parâmetro um objeto do tipo `HttpServletRequest`.
 
