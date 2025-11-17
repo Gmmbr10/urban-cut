@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class Database {
     private String banco = "urban_cut";
-    private String server = "localhost";
+    private String server = "db:3306";
     private String caminho = "jdbc:mysql://" + server + "/" + banco;
     private String usuario = "root";
-    private String senha = "";
+    private String senha = "root";
     private String driver = "com.mysql.jdbc.Driver";
 
     public Connection getConexao() {
