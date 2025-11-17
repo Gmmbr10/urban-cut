@@ -6,7 +6,6 @@
     <groupId>com.cut.urban</groupId>
     <artifactId>urban_cut</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
 
     <build>
         <sourceDirectory>backend/src/main/java</sourceDirectory>
