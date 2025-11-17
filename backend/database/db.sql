@@ -64,7 +64,7 @@ ALTER TABLE atendimentos ADD CONSTRAINT FOREIGN KEY (id_cliente) REFERENCES clie
 
 CREATE TABLE IF NOT EXISTS horarios_bloqueados (
     id_horario_bloqueado INT AUTO_INCREMENT PRIMARY KEY,
-    id_barbeiro INT NOT NULL,
+    id_barbeiro INT NOT NULL UNIQUE,
     inicio TIME NOT NULL,
     fim TIME NOT NULL,
     created_at DATETIME DEFAULT NOW(),
