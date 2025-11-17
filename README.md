@@ -9,11 +9,17 @@ Urban Cut é um sistema que facilita o processo de agendamento de cortes pelo la
 
 <h2 id="func">:rocket: Funcionalidades do projeto</h2>
 - O sistema deve permitir que o cliente se cadastre.
+
 - O sistema deve permitir que o barbeiro cadastre ele e seu estabelecimento.
+
 - O sistema deve permitir que o barbeiro exclua horários, para realizar outras atividades.
+
 - O sistema deve permitir que o barbeiro cadastre seus funcionários.
+
 - O sistema deve permitir o agendamento.
+
 - O sistema deve permitir listar o resumo do dia.
+
 
 <h2 id="tec">:computer: Tecnologias</h2>
 Este projeto foi desenvolvido com as seguintes tecnologias:
