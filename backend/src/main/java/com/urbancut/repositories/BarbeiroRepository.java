@@ -42,7 +42,7 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            HorarioBloqueado horarioBloqueado =  new HorarioBloqueado.HorarioBloqueadoBuilder()
+            HorarioBloqueado horarioBloqueado =  data.getTime("inicio") == null ? null : new HorarioBloqueado.HorarioBloqueadoBuilder()
                     .idHorarioBloqueado(data.getInt("id_horario_bloqueado"))
                     .idBarbeiro(data.getInt("id_barbeiro"))
                     .inicio(data.getTime("inicio").toLocalTime())
@@ -104,7 +104,7 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            HorarioBloqueado horarioBloqueado =  new HorarioBloqueado.HorarioBloqueadoBuilder()
+            HorarioBloqueado horarioBloqueado =  data.getTime("inicio") == null ? null : new HorarioBloqueado.HorarioBloqueadoBuilder()
                     .idHorarioBloqueado(data.getInt("id_horario_bloqueado"))
                     .idBarbeiro(data.getInt("id_barbeiro"))
                     .inicio(data.getTime("inicio").toLocalTime())
