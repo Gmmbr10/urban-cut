@@ -8,13 +8,15 @@ public class Barbeiro extends Model {
     private String email;
     private String senha;
     private Integer idBarbearia;
+    private HorarioBloqueado horarioBloqueado;
 
-    private Barbeiro(Integer idBarbeiro, String nome, String email, String senha, Integer idBarbearia) {
+    private Barbeiro(Integer idBarbeiro, String nome, String email, String senha, Integer idBarbearia, HorarioBloqueado horarioBloqueado) {
         this.idBarbeiro = idBarbeiro;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.idBarbearia = idBarbearia;
+        this.horarioBloqueado = horarioBloqueado;
     }
 
     public static class BarbeiroBuilder {
@@ -23,6 +25,7 @@ public class Barbeiro extends Model {
         private String email = null;
         private String senha = null;
         private Integer idBarbearia = null;
+        private HorarioBloqueado horarioBloqueado = null;
 
         public BarbeiroBuilder idBarbeiro(int id) {
             this.idBarbeiro = id;
@@ -49,8 +52,13 @@ public class Barbeiro extends Model {
             return this;
         }
 
+        public BarbeiroBuilder horarioBloqueado(HorarioBloqueado horarioBloqueado){
+            this.horarioBloqueado = horarioBloqueado;
+            return this;
+        }
+
         public Barbeiro build() {
-            return new Barbeiro(idBarbeiro, nome, email, senha, idBarbearia);
+            return new Barbeiro(idBarbeiro, nome, email, senha, idBarbearia,horarioBloqueado);
         }
     }
 
@@ -90,8 +98,23 @@ public class Barbeiro extends Model {
         this.idBarbearia = idBarbearia;
     }
 
+    public HorarioBloqueado getHorarioBloqueado() {
+        return horarioBloqueado;
+    }
+
+    public void setHorarioBloqueado(HorarioBloqueado horarioBloqueado) {
+        this.horarioBloqueado = horarioBloqueado;
+    }
+
     @Override
     public String toString() {
-        return "Barbeiro{" + "idBarbeiro=" + idBarbeiro + ", nome='" + nome + '\'' + ", email='" + email + '\'' + ", senha='" + senha + '\'' + ", idBarbearia=" + idBarbearia + '}';
+        return "Barbeiro{" +
+                "idBarbeiro=" + idBarbeiro +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", idBarbearia=" + idBarbearia +
+                ", horarioBloqueado=" + horarioBloqueado +
+                '}';
     }
 }
