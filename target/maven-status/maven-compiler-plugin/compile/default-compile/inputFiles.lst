@@ -15,6 +15,7 @@
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/repositories/ClienteRepository.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/repositories/HorarioBloqueadoRepository.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/repositories/ResumoDiaRepository.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/AuthService.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/BarbeariaService.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/BarbeiroService.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/ClienteService.java

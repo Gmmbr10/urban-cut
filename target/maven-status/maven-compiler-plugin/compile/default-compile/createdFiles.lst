@@ -2,6 +2,7 @@ com/urbancut/core/interfaces/AuthenticableInterface.class
 com/urbancut/models/Barbearia$BarbeariaBuilder.class
 com/urbancut/models/HorarioBloqueado.class
 com/urbancut/services/BarbeariaService.class
+com/urbancut/services/AuthService.class
 com/urbancut/models/Cliente$1.class
 com/urbancut/models/Barbearia$1.class
 com/urbancut/core/Service.class
