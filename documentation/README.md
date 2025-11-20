@@ -8,6 +8,7 @@ Aqui estão os links para a documentação de cada elemento presente no sistema:
 - [Barbeiro](./barbeiro/README.md)
 - [Barbearia](./barbearia/README.md)
 - [Horário Bloqueado](./horario-bloqueado/README.md)
+- [Auth](./auth/README.md)
 
 ## DER
 ![DER do sistema](./DER.drawio.png)
