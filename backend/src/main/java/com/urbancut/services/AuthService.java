@@ -12,8 +12,8 @@ import java.sql.SQLException;
 
 public class AuthService {
     public Response<Boolean> login(HttpServletRequest request, HttpSession session){
-        switch(request.getParameter("tipo")){
-            case "Cliente":
+        switch(request.getParameter("tipo").toLowerCase()){
+            case "cliente":
                 try {
                     Cliente cliente = new ClienteRepository().searchByEmail(request.getParameter("email"));
 
@@ -27,7 +27,7 @@ public class AuthService {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "Barbeiro":
+            case "barbeiro":
                 try {
                     Barbeiro barbeiro = new BarbeiroRepository().searchByEmail(request.getParameter("email"));
 
