@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="BarbeariaService.css">
+       
+</head>
+<body>
+
+<div class="container">
+    <h2>Cadastro</h2>
+
+    <form id="formBarbearia">
+        <input type="number" name="idDono" placeholder="ID do dono" required>
+        <input type="text" name="nome" placeholder="Nome da barbearia" required>
+        <input type="text" name="urlMaps" placeholder="URL Google Maps" required>
+        <input type="number" name="tempoMedioAtendimento" placeholder="Tempo médio de atendimento (min)" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p id="mensagem"></p>
+</div>
+
+<script src="../../backend/src/main/java/com/urbancut/services/BarbeariaService.java"></script>
+
+</body>
+</html>
