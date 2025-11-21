@@ -92,4 +92,26 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         b.setIdBarbearia(resultSet.getInt(1));
         (new BarbeiroRepository()).update(b);
     }
+
+    public List<Barbearia> all() throws SQLException {
+        String query = "SELECT * FROM barbearias";
+        PreparedStatement stm = this.database.prepareStatement(query);
+        ResultSet dados = stm.executeQuery();
+
+        List<Barbearia> barbearias = new ArrayList<>();
+
+        while (dados.next()) {
+            Barbearia barbearia = new Barbearia.BarbeariaBuilder()
+                    .nome(dados.getString("nome"))
+                    .urlMaps(dados.getString("url_maps"))
+                    .idBarbearia(dados.getInt("id_barbearia"))
+                    .idDono(dados.getInt("id_dono"))
+                    .tempoMedioAtendimento(dados.getTimestamp("tempo_medio").toLocalDateTime().toLocalTime())
+                    .build();
+
+            barbearias.add(barbearia);
+        }
+
+        return barbearias;
+    }
 }
