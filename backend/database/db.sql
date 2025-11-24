@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS enderecos (
     bairro VARCHAR(100) NOT NULL,
     logradouro VARCHAR(150) NOT NULL,
     numero INT NOT NULL,
-    complemento VARCHAR(150) NOT NULL
+    complemento VARCHAR(150)
 );
 
 ALTER TABLE barbearias ADD CONSTRAINT FOREIGN KEY (id_endereco) REFERENCES enderecos(id_endereco);
