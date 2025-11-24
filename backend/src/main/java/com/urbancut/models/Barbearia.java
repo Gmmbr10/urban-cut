@@ -3,21 +3,21 @@ package com.urbancut.models;
 import com.urbancut.core.Model;
 
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Arrays;
 
 public class Barbearia extends Model {
     private Integer idBarbearia;
     private Integer idDono;
     private String nome;
-    private String urlMaps;
+    private Integer idEndereco;
     private LocalTime tempoMedioAtendimento;
     private Barbeiro[] barbeiros;
 
-    private Barbearia(Integer idBarbearia, Integer idDono, String nome, String urlMaps, LocalTime tempoMedioAtendimento) {
+    private Barbearia(Integer idBarbearia, Integer idDono, String nome, Integer idEndereco, LocalTime tempoMedioAtendimento) {
         this.idBarbearia = idBarbearia;
         this.idDono = idDono;
         this.nome = nome;
-        this.urlMaps = urlMaps;
+        this.idEndereco = idEndereco;
         this.tempoMedioAtendimento = tempoMedioAtendimento;
     }
 
@@ -25,7 +25,7 @@ public class Barbearia extends Model {
         private Integer idBarbearia;
         private Integer idDono;
         private String nome;
-        private String urlMaps;
+        private Integer idEndereco;
         private LocalTime tempoMedioAtendimento;
 
         public BarbeariaBuilder idBarbearia(Integer idBarbearia) {
@@ -43,8 +43,8 @@ public class Barbearia extends Model {
             return this;
         }
 
-        public BarbeariaBuilder urlMaps(String urlMaps) {
-            this.urlMaps = urlMaps;
+        public BarbeariaBuilder idEndereco(Integer idEndereco) {
+            this.idEndereco = idEndereco;
             return this;
         }
 
@@ -64,7 +64,7 @@ public class Barbearia extends Model {
         }
 
         public Barbearia build() {
-            return new Barbearia(idBarbearia, idDono, nome, urlMaps, tempoMedioAtendimento);
+            return new Barbearia(idBarbearia, idDono, nome, idEndereco, tempoMedioAtendimento);
         }
     }
 
@@ -84,12 +84,12 @@ public class Barbearia extends Model {
         this.nome = nome;
     }
 
-    public String getUrlMaps() {
-        return urlMaps;
+    public Integer getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setUrlMaps(String urlMaps) {
-        this.urlMaps = urlMaps;
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public LocalTime getTempoMedioAtendimento() {
@@ -110,6 +110,13 @@ public class Barbearia extends Model {
 
     @Override
     public String toString() {
-        return "Barbearia{" + "idBarbearia=" + idBarbearia + ", idDono=" + idDono + ", nome='" + nome + '\'' + ", urlMaps='" + urlMaps + '\'' + ", tempoMedioAtendimento=" + tempoMedioAtendimento + '}';
+        return "Barbearia{" +
+                "idBarbearia=" + idBarbearia +
+                ", idDono=" + idDono +
+                ", nome='" + nome + '\'' +
+                ", idEndereco=" + idEndereco +
+                ", tempoMedioAtendimento=" + tempoMedioAtendimento +
+                ", barbeiros=" + Arrays.toString(barbeiros) +
+                '}';
     }
 }

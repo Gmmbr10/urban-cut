@@ -14,12 +14,28 @@ Para salvar um barbearia, será necessário enviar os seguintes dados:
 > 
 > - Dado: nome do parâmetro durante o envio
 
+**Dados do endereço:**
+
+- CEP: `cep`
+- Estado: `estado`
+- Cidade: `cidade`
+- Bairro: `bairro`
+- Logradouro: `logradouro`
+- Número: `numero`
+- Complemento (opcional): `complemento`
+
+**Dados da barbearia:**
+
 - Id do dono: `idDono`
 - Nome da barbearia: `nome`
-- Url do maps da barbearia: `urlMaps`
 - Tempo médio do atendimento (em minutos): `tempoMedioAtendimento`
 
 Para registrar a barbearia, será necessário usar o método `register()` da classe `BarbeariaService`, que recebe como parâmetro um objeto do tipo `HttpServletRequest`.
+
+O método faz duas operações:
+
+1. **Criação de um novo endereço** usando `EnderecoRepository.saveWithReturn()`.
+2. **Cadastro da barbearia** vinculando o endereço criado.
 
 Como resposta, o método retornará um objeto do tipo `Response<Boolean>`.
 
@@ -63,8 +79,6 @@ Para atualizar uma barbearia, será necessário enviar os seguintes dados:
 - Id do dono: `idDono`
 - Id da barbearia: `idBarbearia`
 - Nome da barbearia: `nome`
-- Email da barbearia: `email`
-- Senha da barbearia: `senha`
 
 Para atualizar a barbearia, será necessário usar o método `update()` da classe `BarbeariaService`, que recebe como parâmetro um objeto do tipo `HttpServletRequest`.
 
