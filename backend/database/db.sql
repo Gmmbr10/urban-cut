@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS barbearias (
     id_barbearia INT AUTO_INCREMENT PRIMARY KEY,
     id_dono INT NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    url_maps TEXT NOT NULL,
+    id_endereco INT NOT NULL,
     tempo_medio TIME NOT NULL,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT NOW() ON UPDATE NOW()
@@ -72,3 +72,16 @@ CREATE TABLE IF NOT EXISTS horarios_bloqueados (
 );
 
 ALTER TABLE horarios_bloqueados ADD CONSTRAINT FOREIGN KEY (id_barbeiro) REFERENCES barbeiros(id_barbeiro);
+
+CREATE TABLE IF NOT EXISTS enderecos (
+    id_endereco INT AUTO_INCREMENT PRIMARY KEY,
+    cep VARCHAR(20) NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    logradouro VARCHAR(150) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(150) NOT NULL
+);
+
+ALTER TABLE barbearias ADD CONSTRAINT FOREIGN KEY (id_endereco) REFERENCES enderecos(id_endereco);

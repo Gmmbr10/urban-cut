@@ -9,8 +9,10 @@ com/urbancut/core/Service.class
 com/urbancut/services/AtendimentoService.class
 com/urbancut/models/Barbeiro$BarbeiroBuilder.class
 com/urbancut/models/Barbeiro$1.class
+com/urbancut/models/Endereco.class
 com/urbancut/models/Cliente.class
 com/urbancut/models/ResumoDia.class
+com/urbancut/core/interfaces/RepositoryWithReturnInterface.class
 com/urbancut/repositories/BarbeariaRepository.class
 com/urbancut/models/Atendimento.class
 com/urbancut/repositories/AtendimentoRepository.class
@@ -23,6 +25,8 @@ com/urbancut/models/Atendimento$1.class
 com/urbancut/models/HorarioBloqueado$1.class
 com/urbancut/models/Barbearia.class
 com/urbancut/models/HorarioBloqueado$HorarioBloqueadoBuilder.class
+com/urbancut/services/EnderecoService.class
+com/urbancut/models/Endereco$1.class
 com/urbancut/models/Barbeiro.class
 com/urbancut/models/Cliente$ClienteBuilder.class
 com/urbancut/core/Repository.class
@@ -34,5 +38,7 @@ com/urbancut/repositories/ResumoDiaRepository.class
 com/urbancut/services/ClienteService.class
 com/urbancut/repositories/HorarioBloqueadoRepository.class
 com/urbancut/core/Model.class
+com/urbancut/models/Endereco$EnderecoBuilder.class
 com/urbancut/repositories/BarbeiroRepository.class
+com/urbancut/repositories/EnderecoRepository.class
 com/urbancut/models/Atendimento$AtendimentoBuilder.class
