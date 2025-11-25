@@ -1,10 +1,10 @@
 package com.urbancut.services;
 
-import com.urbancut.core.Service;
-import jakarta.servlet.http.HttpServletRequest;
-import com.urbancut.models.Cliente;
 import com.urbancut.core.Response;
+import com.urbancut.core.Service;
+import com.urbancut.models.Cliente;
 import com.urbancut.repositories.ClienteRepository;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.SQLException;
 
@@ -19,14 +19,14 @@ public class ClienteService extends Service<ClienteRepository> {
         int id = Integer.parseInt(request.getParameter("idCliente"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!",null);
+            return new Response<>(400, "Falta de informações!", null);
         }
 
         try {
             Cliente cliente = this.repository.searchById(id);
             return new Response<>(200, cliente);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
         }
     }
 
@@ -34,7 +34,7 @@ public class ClienteService extends Service<ClienteRepository> {
         String email = request.getParameter("email");
 
         if (email == null) {
-            return new Response<>(400, "Falta de informações!",null);
+            return new Response<>(400, "Falta de informações!", null);
         }
 
         try {
@@ -52,16 +52,16 @@ public class ClienteService extends Service<ClienteRepository> {
         String senha = request.getParameter("senha");
 
         if (nome == null || email == null || senha == null) {
-            return new Response<>(400, "Falta de informações!",false);
+            return new Response<>(400, "Falta de informações!", false);
         }
 
         Cliente cliente = new Cliente.ClienteBuilder().nome(nome).email(email).senha(senha).build();
 
         try {
             repository.save(cliente);
-            return new Response<>(201,true);
+            return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }
     }
 
@@ -73,16 +73,16 @@ public class ClienteService extends Service<ClienteRepository> {
         String senha = request.getParameter("senha");
 
         if (id == 0 || nome == null || email == null || senha == null) {
-            return new Response<>(400, "Falta de informações!",false);
+            return new Response<>(400, "Falta de informações!", false);
         }
 
         Cliente cliente = new Cliente.ClienteBuilder().idCliente(id).nome(nome).email(email).senha(senha).build();
 
         try {
             repository.update(cliente);
-            return new Response<>(204,true);
+            return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }
 
     }
@@ -92,12 +92,12 @@ public class ClienteService extends Service<ClienteRepository> {
         int id = Integer.parseInt(request.getParameter("idCliente"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!",false);
+            return new Response<>(400, "Falta de informações!", false);
         }
 
         try {
             repository.delete(id);
-            return new Response<>(204,true);
+            return new Response<>(204, true);
         } catch (SQLException e) {
             return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }

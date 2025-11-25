@@ -5,6 +5,7 @@ import com.urbancut.core.interfaces.RepositoryInterface;
 import com.urbancut.models.Atendimento;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class AtendimentoRepository extends Repository implements RepositoryInterface<Atendimento> {
     @Override
@@ -43,13 +44,7 @@ public class AtendimentoRepository extends Repository implements RepositoryInter
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            atendimento = new Atendimento.AtendimentoBuilder()
-                    .idAtendimento(data.getInt("id_atendimento"))
-                    .idBarbearia(data.getInt("id_barbearia"))
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .idCliente(data.getInt("id_cliente"))
-                    .Atendimento(data.getTimestamp("atendimento").toLocalDateTime())
-                    .build();
+            atendimento = new Atendimento.AtendimentoBuilder().idAtendimento(data.getInt("id_atendimento")).idBarbearia(data.getInt("id_barbearia")).idBarbeiro(data.getInt("id_barbeiro")).idCliente(data.getInt("id_cliente")).Atendimento(data.getTimestamp("atendimento").toLocalDateTime()).build();
         }
 
         return atendimento;
@@ -69,5 +64,16 @@ public class AtendimentoRepository extends Repository implements RepositoryInter
 
         ResultSet resultSet = stm.getGeneratedKeys();
         resultSet.next();
+    }
+
+    public boolean isHorarioAgendado(LocalDateTime dataHora, int idBarbeiro) throws SQLException {
+        String query = "SELECT * FROM atendimentos WHERE id_barbeiro = ? AND atendimento = ?";
+        PreparedStatement stm = this.database.prepareStatement(query);
+
+        stm.setInt(1, idBarbeiro);
+        stm.setTimestamp(2, Timestamp.valueOf(dataHora));
+
+        ResultSet resultSet = stm.executeQuery();
+        return resultSet.next();
     }
 }

@@ -7,7 +7,7 @@ public class TimeValidator {
     public final static String regex = "(\\d\\d:\\d\\d)";
     public final static Pattern pattern = Pattern.compile(regex);
 
-    public static boolean validar(String time){
+    public static boolean validar(String time) {
         Matcher matcher = pattern.matcher(time);
         return matcher.find();
     }

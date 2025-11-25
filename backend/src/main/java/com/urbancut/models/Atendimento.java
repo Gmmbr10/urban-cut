@@ -51,7 +51,7 @@ public class Atendimento extends Model {
             return this;
         }
 
-        public Atendimento build(){
+        public Atendimento build() {
             return new Atendimento(this.idAtendimento, this.idBarbearia, this.idBarbeiro, this.idCliente, this.atendimento);
         }
     }
@@ -78,12 +78,6 @@ public class Atendimento extends Model {
 
     @Override
     public String toString() {
-        return "Atendimento{" +
-                "idAtendimento=" + idAtendimento +
-                ", idBarbearia=" + idBarbearia +
-                ", idBarbeiro=" + idBarbeiro +
-                ", idCliente=" + idCliente +
-                ", atendimento=" + atendimento +
-                '}';
+        return "Atendimento{" + "idAtendimento=" + idAtendimento + ", idBarbearia=" + idBarbearia + ", idBarbeiro=" + idBarbeiro + ", idCliente=" + idCliente + ", atendimento=" + atendimento + '}';
     }
 }

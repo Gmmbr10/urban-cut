@@ -52,13 +52,13 @@ public class Barbeiro extends Model {
             return this;
         }
 
-        public BarbeiroBuilder horarioBloqueado(HorarioBloqueado horarioBloqueado){
+        public BarbeiroBuilder horarioBloqueado(HorarioBloqueado horarioBloqueado) {
             this.horarioBloqueado = horarioBloqueado;
             return this;
         }
 
         public Barbeiro build() {
-            return new Barbeiro(idBarbeiro, nome, email, senha, idBarbearia,horarioBloqueado);
+            return new Barbeiro(idBarbeiro, nome, email, senha, idBarbearia, horarioBloqueado);
         }
     }
 
@@ -108,13 +108,6 @@ public class Barbeiro extends Model {
 
     @Override
     public String toString() {
-        return "Barbeiro{" +
-                "idBarbeiro=" + idBarbeiro +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", idBarbearia=" + idBarbearia +
-                ", horarioBloqueado=" + horarioBloqueado +
-                '}';
+        return "Barbeiro{" + "idBarbeiro=" + idBarbeiro + ", nome='" + nome + '\'' + ", email='" + email + '\'' + ", senha='" + senha + '\'' + ", idBarbearia=" + idBarbearia + ", horarioBloqueado=" + horarioBloqueado + '}';
     }
 }

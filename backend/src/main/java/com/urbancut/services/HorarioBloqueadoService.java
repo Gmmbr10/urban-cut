@@ -48,11 +48,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         LocalTime inicio = LocalTime.parse(inicioStr);
         LocalTime fim = LocalTime.parse(fimStr);
 
-        HorarioBloqueado model = new HorarioBloqueado.HorarioBloqueadoBuilder()
-                .idBarbeiro(idBarbeiro)
-                .inicio(inicio)
-                .fim(fim)
-                .build();
+        HorarioBloqueado model = new HorarioBloqueado.HorarioBloqueadoBuilder().idBarbeiro(idBarbeiro).inicio(inicio).fim(fim).build();
 
         try {
             repository.save(model);
@@ -80,12 +76,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         LocalTime inicio = LocalTime.parse(inicioStr);
         LocalTime fim = LocalTime.parse(fimStr);
 
-        HorarioBloqueado model = new HorarioBloqueado.HorarioBloqueadoBuilder()
-                .idHorarioBloqueado(idHorarioBloqueado)
-                .idBarbeiro(idBarbeiro)
-                .inicio(inicio)
-                .fim(fim)
-                .build();
+        HorarioBloqueado model = new HorarioBloqueado.HorarioBloqueadoBuilder().idHorarioBloqueado(idHorarioBloqueado).idBarbeiro(idBarbeiro).inicio(inicio).fim(fim).build();
 
         try {
             repository.update(model);

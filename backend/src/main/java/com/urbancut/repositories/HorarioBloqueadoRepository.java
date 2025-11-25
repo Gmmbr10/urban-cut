@@ -43,13 +43,8 @@ public class HorarioBloqueadoRepository extends Repository implements Repository
 
         ResultSet data = stm.executeQuery();
 
-        if (data.next()){
-            horarioBloqueado = new HorarioBloqueado.HorarioBloqueadoBuilder()
-                    .idHorarioBloqueado(data.getInt("id_horario_bloqueado"))
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .inicio(data.getTime("inicio").toLocalTime())
-                    .fim(data.getTime("fim").toLocalTime())
-                    .build();
+        if (data.next()) {
+            horarioBloqueado = new HorarioBloqueado.HorarioBloqueadoBuilder().idHorarioBloqueado(data.getInt("id_horario_bloqueado")).idBarbeiro(data.getInt("id_barbeiro")).inicio(data.getTime("inicio").toLocalTime()).fim(data.getTime("fim").toLocalTime()).build();
         }
         return horarioBloqueado;
     }

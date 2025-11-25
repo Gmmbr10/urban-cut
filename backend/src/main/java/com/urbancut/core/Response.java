@@ -51,10 +51,6 @@ public class Response<T> {
 
     @Override
     public String toString() {
-        return "Response{" +
-                "statusCode=" + statusCode +
-                ", mensagem='" + mensagem + '\'' +
-                ", dado=" + dado +
-                '}';
+        return "Response{" + "statusCode=" + statusCode + ", mensagem='" + mensagem + '\'' + ", dado=" + dado + '}';
     }
 }

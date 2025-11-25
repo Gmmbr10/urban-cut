@@ -22,11 +22,11 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
 
     @Override
     public void update(Barbearia model) throws SQLException {
-        String query = "UPDATE barbearias SET nome=?,url_maps=?,tempo_medio=? WHERE id_barbearia = ? AND id_dono = ?";
+        String query = "UPDATE barbearias SET nome=?,id_endereco=?,tempo_medio=? WHERE id_barbearia = ? AND id_dono = ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
         stm.setString(1, model.getNome());
-        stm.setString(2, model.getUrlMaps());
+        stm.setInt(2, model.getIdEndereco());
         stm.setTime(3, Time.valueOf(model.getTempoMedioAtendimento()));
         stm.setInt(4, model.getIdBarbearia());
         stm.setInt(5, model.getIdDono());
@@ -46,7 +46,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            barbearia = new Barbearia.BarbeariaBuilder().idBarbearia(data.getInt("id_barbearia")).idDono(data.getInt("id_dono")).tempoMedioAtendimento(data.getTime("tempo_medio").toLocalTime()).urlMaps(data.getString("url_maps")).nome(data.getString("nome")).build();
+            barbearia = new Barbearia.BarbeariaBuilder().idBarbearia(data.getInt("id_barbearia")).idDono(data.getInt("id_dono")).tempoMedioAtendimento(data.getTime("tempo_medio").toLocalTime()).idEndereco(data.getInt("id_endereco")).nome(data.getString("nome")).build();
 
             barbearia.setBarbeiros(this.searchBarbeiros(id));
         }
@@ -75,12 +75,12 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
 
     @Override
     public void save(Barbearia model) throws SQLException {
-        String query = "INSERT INTO barbearias (id_dono,nome,url_maps,tempo_medio) VALUES (?,?,?,?)";
+        String query = "INSERT INTO barbearias (id_dono,nome,id_endereco,tempo_medio) VALUES (?,?,?,?)";
         PreparedStatement stm = this.database.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         stm.setInt(1, model.getIdDono());
         stm.setString(2, model.getNome());
-        stm.setString(3, model.getUrlMaps());
+        stm.setInt(3, model.getIdEndereco());
         stm.setTime(4, Time.valueOf(model.getTempoMedioAtendimento()));
 
         stm.executeUpdate();
@@ -101,13 +101,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         List<Barbearia> barbearias = new ArrayList<>();
 
         while (dados.next()) {
-            Barbearia barbearia = new Barbearia.BarbeariaBuilder()
-                    .nome(dados.getString("nome"))
-                    .urlMaps(dados.getString("url_maps"))
-                    .idBarbearia(dados.getInt("id_barbearia"))
-                    .idDono(dados.getInt("id_dono"))
-                    .tempoMedioAtendimento(dados.getTimestamp("tempo_medio").toLocalDateTime().toLocalTime())
-                    .build();
+            Barbearia barbearia = new Barbearia.BarbeariaBuilder().nome(dados.getString("nome")).idEndereco(dados.getInt("id_endereco")).idBarbearia(dados.getInt("id_barbearia")).idDono(dados.getInt("id_dono")).tempoMedioAtendimento(dados.getTimestamp("tempo_medio").toLocalDateTime().toLocalTime()).build();
 
             barbearias.add(barbearia);
         }

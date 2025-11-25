@@ -11,6 +11,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import static com.urbancut.utils.HorarioValidator.isDentroDoHorarioBloqueado;
+import static com.urbancut.utils.HorarioValidator.isDentroDoHorarioDaBarbearia;
+
 public class AtendimentoService extends Service<AtendimentoRepository> {
     public AtendimentoService() {
         this.repository = new AtendimentoRepository();
@@ -21,14 +24,14 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         int id = Integer.parseInt(request.getParameter("idAtendimento"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!",null);
+            return new Response<>(400, "Falta de informações!", null);
         }
 
         try {
             Atendimento atendimento = this.repository.searchById(id);
             return new Response<>(200, atendimento);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
         }
     }
 
@@ -41,21 +44,29 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         LocalTime time = LocalTime.parse(request.getParameter("horario"));
 
         if (idBarbearia == 0 || idBarbeiro == 0 || idCliente == 0 || data.isAfter(LocalDate.now())) {
-            return new Response<>(400, "Falta de informações!",null);
+            return new Response<>(400, "Falta de informações!", null);
         }
 
-        Atendimento atendimento = new Atendimento.AtendimentoBuilder()
-                .Atendimento(LocalDateTime.of(data,time))
-                .idBarbeiro(idBarbeiro)
-                .idBarbearia(idBarbearia)
-                .idCliente(idCliente)
-                .build();
+        Atendimento atendimento = new Atendimento.AtendimentoBuilder().Atendimento(LocalDateTime.of(data, time)).idBarbeiro(idBarbeiro).idBarbearia(idBarbearia).idCliente(idCliente).build();
 
         try {
+
+            if (repository.isHorarioAgendado(atendimento.getAtendimento(), atendimento.getIdBarbeiro())) {
+                return new Response<>(200, "Não foi possível realizar o agendamento, este horário já foi agendado", false);
+            }
+
+            if (isDentroDoHorarioBloqueado(atendimento.getAtendimento(), atendimento.getIdBarbeiro())) {
+                return new Response<>(200, "Não foi possível realizar o agendamento, horário bloqueado pelo barbeiro", false);
+            }
+
+            if (!isDentroDoHorarioDaBarbearia(atendimento.getAtendimento(),atendimento.getIdBarbearia())) {
+                return new Response<>(200, "Não foi possível realizar o agendamento, horário fora do estabelecimento", false);
+            }
+
             repository.save(atendimento);
-            return new Response<>(201,true);
+            return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }
     }
 
@@ -64,14 +75,14 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         int id = Integer.parseInt(request.getParameter("idAtendimento"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!",false);
+            return new Response<>(400, "Falta de informações!", false);
         }
 
         try {
             repository.delete(id);
-            return new Response<>(204,true);
+            return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }
 
     }

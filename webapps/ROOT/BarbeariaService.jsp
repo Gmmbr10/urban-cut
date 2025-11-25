@@ -2,12 +2,10 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Barbearia</title>
+    <title>URBAN-CUT</title>
+    ,<link rel="stylesheet" href="BarbeariaService.css"
 </head>
 <body>
-
-    <h1>Gerenciar Barbearia</h1>
-
     <form id="form">
         <input type="number" name="idDono" placeholder="Id do dono"><br><br>
         <input type="number" name="idBarbearia" placeholder="Id da barbearia"><br><br>
@@ -23,7 +21,7 @@
 
     <pre id="resultado"></pre>
 
-    <%@page import="com.urbancut.core.Response"%>
+ <%@page import="com.urbancut.core.Response"%>
 <%@page import="com.urbancut.services.BarbeariaService"%>
 <%
 	BarbeariaService service = new BarbeariaService();
@@ -39,11 +37,10 @@
 %>
 
 <%@page import="com.urbancut.core.Response"%>
-<%@page import="com.urbancut.models.Barbearia"%>
 <%@page import="com.urbancut.services.BarbeariaService"%>
 <%
 	BarbeariaService service = new BarbeariaService();
-	Response<Barbearia> resposta = service.searchById(request);
+	Response<Boolean> resposta = service.update(request);
 %>
 
 <%@page import="com.urbancut.core.Response"%>

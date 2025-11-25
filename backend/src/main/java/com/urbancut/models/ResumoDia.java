@@ -34,8 +34,8 @@ public class ResumoDia {
             return this;
         }
 
-        public ResumoDia build(){
-            return new ResumoDia(data,horario,cliente);
+        public ResumoDia build() {
+            return new ResumoDia(data, horario, cliente);
         }
     }
 
@@ -53,10 +53,6 @@ public class ResumoDia {
 
     @Override
     public String toString() {
-        return "ResumoDia{" +
-                "data=" + data +
-                ", horario=" + horario +
-                ", cliente=" + cliente +
-                '}';
+        return "ResumoDia{" + "data=" + data + ", horario=" + horario + ", cliente=" + cliente + '}';
     }
 }

@@ -43,8 +43,8 @@ public class HorarioBloqueado extends Model {
             return this;
         }
 
-        public HorarioBloqueado build(){
-            return new HorarioBloqueado(idHorarioBloqueado,idBarbeiro,inicio,fim);
+        public HorarioBloqueado build() {
+            return new HorarioBloqueado(idHorarioBloqueado, idBarbeiro, inicio, fim);
         }
     }
 
@@ -74,11 +74,6 @@ public class HorarioBloqueado extends Model {
 
     @Override
     public String toString() {
-        return "HorarioBloqueado{" +
-                "idHorarioBloqueado=" + idHorarioBloqueado +
-                ", idBarbeiro=" + idBarbeiro +
-                ", inicio=" + inicio +
-                ", fim=" + fim +
-                '}';
+        return "HorarioBloqueado{" + "idHorarioBloqueado=" + idHorarioBloqueado + ", idBarbeiro=" + idBarbeiro + ", inicio=" + inicio + ", fim=" + fim + '}';
     }
 }

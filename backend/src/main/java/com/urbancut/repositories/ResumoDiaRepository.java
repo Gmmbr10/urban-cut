@@ -3,7 +3,10 @@ package com.urbancut.repositories;
 import com.urbancut.core.Repository;
 import com.urbancut.models.ResumoDia;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,20 +21,16 @@ public class ResumoDiaRepository extends Repository {
         String query = "SELECT * FROM atendimentos WHERE id_barbeiro = ? AND atendimento BETWEEN ? AND ?";
         PreparedStatement stm = this.database.prepareStatement(query);
 
-        stm.setInt(1,idBarbeiro);
+        stm.setInt(1, idBarbeiro);
         stm.setTimestamp(2, Timestamp.valueOf(LocalDateTime.of(data, LocalTime.MIN)));
         stm.setTimestamp(3, Timestamp.valueOf(LocalDateTime.of(data, LocalTime.MAX)));
 
         ResultSet response = stm.executeQuery();
 
-        while(response.next()){
-            ResumoDia resumoDia = new ResumoDia.ResumoDiaBuilder()
-                    .data(response.getTimestamp("atendimento").toLocalDateTime().toLocalDate())
-                    .horario(response.getTimestamp("atendimento").toLocalDateTime().toLocalTime())
-                    .cliente((new ClienteRepository()).searchById(response.getInt("id_cliente")))
-                    .build();
+        while (response.next()) {
+            ResumoDia resumoDia = new ResumoDia.ResumoDiaBuilder().data(response.getTimestamp("atendimento").toLocalDateTime().toLocalDate()).horario(response.getTimestamp("atendimento").toLocalDateTime().toLocalTime()).cliente((new ClienteRepository()).searchById(response.getInt("id_cliente"))).build();
 
-            if ( resumoDia.getCliente().getIdCliente() != null ){
+            if (resumoDia.getCliente().getIdCliente() != null) {
                 summary.add(resumoDia);
             }
         }
