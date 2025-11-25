@@ -1,25 +1,40 @@
-document.getElementById("formBarbearia").addEventListener("submit", async function(e) {
-    e.preventDefault();
+const baseURL = "http://localhost:8080/barbearia";
 
-    const form = e.target;
-    const formData = new FormData(form);
+function getFormData() {
+    return new FormData(document.getElementById("form"));
+}
 
-    try {
-        const response = await fetch("http://localhost:8080/barbearia/register", {
-            method: "POST",
-            body: formData
-        });
+async function cadastrar() {
+    const data = await fetch(baseURL + "/register", {
+        method: "POST",
+        body: getFormData()
+    });
+    document.getElementById("resultado").textContent = await data.text();
+}
 
-        const result = await response.json();
-        document.getElementById("mensagem").innerText = result.message 
-            ? result.message 
-            : "Barbearia cadastrada com sucesso!";
+async function buscar() {
+    const data = await fetch(baseURL + "/searchById", {
+        method: "POST",
+        body: getFormData()
+    });
+    document.getElementById("resultado").textContent = await data.text();
+}
 
-        if (response.status === 201) {
-            form.reset();
-        }
+async function atualizar() {
+    const data = await fetch(baseURL + "/update", {
+        method: "POST",
+        body: getFormData()
+    });
+    document.getElementById("resultado").textContent = await data.text();
+}
 
-    } catch (erro) {
-        document.getElementById("mensagem").innerText = "Erro ao conectar com o servidor.";
-    }
-});
+async function deletar() {
+    const formData = new FormData();
+    formData.append("idBarbearia", document.querySelector("input[name='idBarbearia']").value);
+
+    const data = await fetch(baseURL + "/delete", {
+        method: "POST",
+        body: formData
+    });
+    document.getElementById("resultado").textContent = await data.text();
+}
