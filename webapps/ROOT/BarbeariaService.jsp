@@ -24,7 +24,15 @@
     <p id="mensagem"></p>
 </div>
 
+
 <script src="../../backend/src/main/java/com/urbancut/services/BarbeariaService.java"></script>
+
+<%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.services.BarbeariaService"%>
+<%
+	BarbeariaService service = new BarbeariaService();
+	Response<Boolean> resposta = service.register(request);
+%>
 
 </body>
 </html>
