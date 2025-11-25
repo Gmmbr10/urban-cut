@@ -93,7 +93,7 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
 
         if (barbeiro == null) return false;
 
-        boolean isDentroDoHorarioBloqueado = barbeiro.getHorarioBloqueado().getInicio().isBefore(dataHora.toLocalTime()) && barbeiro.getHorarioBloqueado().getFim().isAfter(dataHora.toLocalTime());
+        boolean isDentroDoHorarioBloqueado = barbeiro.getHorarioBloqueado().getInicio().minusMinutes(1).isBefore(dataHora.toLocalTime()) && barbeiro.getHorarioBloqueado().getFim().isAfter(dataHora.toLocalTime());
 
         return isDentroDoHorarioBloqueado;
     }
