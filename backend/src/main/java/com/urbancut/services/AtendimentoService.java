@@ -64,6 +64,10 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
                 return new Response<>(200, "Não foi possível realizar o agendamento, horário bloqueado pelo barbeiro", false);
             }
 
+            if (!isDentroDoHorarioDaBarbearia(atendimento.getAtendimento(),atendimento.getIdBarbearia())) {
+                return new Response<>(200, "Não foi possível realizar o agendamento, horário fora do estabelecimento", false);
+            }
+
             repository.save(atendimento);
             return new Response<>(201, true);
         } catch (SQLException e) {
