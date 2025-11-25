@@ -30,4 +30,6 @@
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/DiaFuncionamentoService.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/EnderecoService.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/HorarioBloqueadoService.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/services/HorariosDisponiveisService.java
+/home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/utils/HorarioValidator.java
 /home/giovanne/Documentos/urban-cut/backend/src/main/java/com/urbancut/utils/TimeValidator.java

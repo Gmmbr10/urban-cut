@@ -1,5 +1,6 @@
 com/urbancut/core/interfaces/AuthenticableInterface.class
 com/urbancut/services/DiaFuncionamentoService.class
+com/urbancut/utils/HorarioValidator$1.class
 com/urbancut/models/DiaFuncionamento$1.class
 com/urbancut/services/BarbeariaService.class
 com/urbancut/services/AuthService.class
@@ -13,9 +14,12 @@ com/urbancut/models/DiaFuncionamento$DiasFuncionamentoBuilder.class
 com/urbancut/repositories/BarbeariaRepository.class
 com/urbancut/models/Atendimento.class
 com/urbancut/repositories/AtendimentoRepository.class
+com/urbancut/services/HorariosDisponiveisService$1.class
 com/urbancut/services/BarbeiroService.class
+com/urbancut/utils/HorarioValidator.class
 com/urbancut/core/Database.class
 com/urbancut/models/HorarioBloqueado$HorarioBloqueadoBuilder.class
+com/urbancut/services/HorariosDisponiveisService.class
 com/urbancut/models/Cliente$ClienteBuilder.class
 com/urbancut/repositories/ClienteRepository.class
 com/urbancut/core/interfaces/RepositoryInterface.class
