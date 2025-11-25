@@ -3,8 +3,10 @@ package com.urbancut.services;
 import com.urbancut.core.Response;
 import com.urbancut.core.Service;
 import com.urbancut.models.Barbearia;
+import com.urbancut.models.DiaFuncionamento;
 import com.urbancut.models.Endereco;
 import com.urbancut.repositories.BarbeariaRepository;
+import com.urbancut.repositories.DiaFuncionamentoRepository;
 import com.urbancut.repositories.EnderecoRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -25,6 +27,8 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
 
         try {
             Barbearia barbearia = this.repository.searchById(id);
+            DiaFuncionamento[] diasFuncionamento = new DiaFuncionamentoRepository().searchByBarbearia(barbearia.getIdBarbearia()).toArray(new DiaFuncionamento[0]);
+            barbearia.setDiasFuncionamento(diasFuncionamento);
             return new Response<>(200, barbearia);
         } catch (SQLException e) {
             return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);

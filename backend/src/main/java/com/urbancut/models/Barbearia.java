@@ -12,6 +12,7 @@ public class Barbearia extends Model {
     private Integer idEndereco;
     private LocalTime tempoMedioAtendimento;
     private Barbeiro[] barbeiros;
+    private DiaFuncionamento[] diasFuncionamento;
 
     private Barbearia(Integer idBarbearia, Integer idDono, String nome, Integer idEndereco, LocalTime tempoMedioAtendimento) {
         this.idBarbearia = idBarbearia;
@@ -19,6 +20,16 @@ public class Barbearia extends Model {
         this.nome = nome;
         this.idEndereco = idEndereco;
         this.tempoMedioAtendimento = tempoMedioAtendimento;
+    }
+
+    private Barbearia(Integer idBarbearia, Integer idDono, String nome, Integer idEndereco, LocalTime tempoMedioAtendimento, Barbeiro[] barbeiros, DiaFuncionamento[] diasFuncionamento) {
+        this.idBarbearia = idBarbearia;
+        this.idDono = idDono;
+        this.nome = nome;
+        this.idEndereco = idEndereco;
+        this.tempoMedioAtendimento = tempoMedioAtendimento;
+        this.barbeiros = barbeiros;
+        this.diasFuncionamento = diasFuncionamento;
     }
 
     public static class BarbeariaBuilder {
@@ -108,8 +119,16 @@ public class Barbearia extends Model {
         this.barbeiros = barbeiros;
     }
 
+    public DiaFuncionamento[] getDiasFuncionamento() {
+        return diasFuncionamento;
+    }
+
+    public void setDiasFuncionamento(DiaFuncionamento[] diasFuncionamento) {
+        this.diasFuncionamento = diasFuncionamento;
+    }
+
     @Override
     public String toString() {
-        return "Barbearia{" + "idBarbearia=" + idBarbearia + ", idDono=" + idDono + ", nome='" + nome + '\'' + ", idEndereco=" + idEndereco + ", tempoMedioAtendimento=" + tempoMedioAtendimento + ", barbeiros=" + Arrays.toString(barbeiros) + '}';
+        return "Barbearia{" + "idBarbearia=" + idBarbearia + ", idDono=" + idDono + ", nome='" + nome + '\'' + ", idEndereco=" + idEndereco + ", tempoMedioAtendimento=" + tempoMedioAtendimento + ", barbeiros=" + Arrays.toString(barbeiros) + ", diasFuncionamento=" + Arrays.toString(diasFuncionamento) + '}';
     }
 }
