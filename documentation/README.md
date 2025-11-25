@@ -10,6 +10,7 @@ Aqui estão os links para a documentação de cada elemento presente no sistema:
 - [Horário Bloqueado](./horario-bloqueado/README.md)
 - [Auth](./auth/README.md)
 - [Endereço](./endereco/README.md)
+- [Dia de funcionamento](./dia-funcionamento/README.md)
 
 ## DER
 ![DER do sistema](./DER.drawio.png)
