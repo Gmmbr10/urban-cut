@@ -110,13 +110,6 @@ public class Barbearia extends Model {
 
     @Override
     public String toString() {
-        return "Barbearia{" +
-                "idBarbearia=" + idBarbearia +
-                ", idDono=" + idDono +
-                ", nome='" + nome + '\'' +
-                ", idEndereco=" + idEndereco +
-                ", tempoMedioAtendimento=" + tempoMedioAtendimento +
-                ", barbeiros=" + Arrays.toString(barbeiros) +
-                '}';
+        return "Barbearia{" + "idBarbearia=" + idBarbearia + ", idDono=" + idDono + ", nome='" + nome + '\'' + ", idEndereco=" + idEndereco + ", tempoMedioAtendimento=" + tempoMedioAtendimento + ", barbeiros=" + Arrays.toString(barbeiros) + '}';
     }
 }

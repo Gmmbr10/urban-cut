@@ -39,22 +39,13 @@ public class EnderecoService extends Service<EnderecoRepository> {
         String numeroStr = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
 
-        if (cep == null || estado == null || cidade == null || bairro == null ||
-                logradouro == null || numeroStr == null) {
+        if (cep == null || estado == null || cidade == null || bairro == null || logradouro == null || numeroStr == null) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
         int numero = Integer.parseInt(numeroStr);
 
-        Endereco endereco = new Endereco.EnderecoBuilder()
-                .cep(cep)
-                .estado(estado)
-                .cidade(cidade)
-                .bairro(bairro)
-                .logradouro(logradouro)
-                .numero(numero)
-                .complemento(complemento)
-                .build();
+        Endereco endereco = new Endereco.EnderecoBuilder().cep(cep).estado(estado).cidade(cidade).bairro(bairro).logradouro(logradouro).numero(numero).complemento(complemento).build();
 
         try {
             repository.save(endereco);
@@ -75,24 +66,14 @@ public class EnderecoService extends Service<EnderecoRepository> {
         String numeroStr = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
 
-        if (idStr == null || cep == null || estado == null || cidade == null ||
-                bairro == null || logradouro == null || numeroStr == null) {
+        if (idStr == null || cep == null || estado == null || cidade == null || bairro == null || logradouro == null || numeroStr == null) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
         int idEndereco = Integer.parseInt(idStr);
         int numero = Integer.parseInt(numeroStr);
 
-        Endereco endereco = new Endereco.EnderecoBuilder()
-                .idEndereco(idEndereco)
-                .cep(cep)
-                .estado(estado)
-                .cidade(cidade)
-                .bairro(bairro)
-                .logradouro(logradouro)
-                .numero(numero)
-                .complemento(complemento)
-                .build();
+        Endereco endereco = new Endereco.EnderecoBuilder().idEndereco(idEndereco).cep(cep).estado(estado).cidade(cidade).bairro(bairro).logradouro(logradouro).numero(numero).complemento(complemento).build();
 
         try {
             repository.update(endereco);

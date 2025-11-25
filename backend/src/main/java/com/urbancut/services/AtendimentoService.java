@@ -3,7 +3,9 @@ package com.urbancut.services;
 import com.urbancut.core.Response;
 import com.urbancut.core.Service;
 import com.urbancut.models.Atendimento;
+import com.urbancut.models.Barbeiro;
 import com.urbancut.repositories.AtendimentoRepository;
+import com.urbancut.repositories.BarbeiroRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.SQLException;
@@ -21,14 +23,14 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         int id = Integer.parseInt(request.getParameter("idAtendimento"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!",null);
+            return new Response<>(400, "Falta de informações!", null);
         }
 
         try {
             Atendimento atendimento = this.repository.searchById(id);
             return new Response<>(200, atendimento);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),null);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
         }
     }
 
@@ -41,21 +43,25 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         LocalTime time = LocalTime.parse(request.getParameter("horario"));
 
         if (idBarbearia == 0 || idBarbeiro == 0 || idCliente == 0 || data.isAfter(LocalDate.now())) {
-            return new Response<>(400, "Falta de informações!",null);
+            return new Response<>(400, "Falta de informações!", null);
         }
 
-        Atendimento atendimento = new Atendimento.AtendimentoBuilder()
-                .Atendimento(LocalDateTime.of(data,time))
-                .idBarbeiro(idBarbeiro)
-                .idBarbearia(idBarbearia)
-                .idCliente(idCliente)
-                .build();
+        Atendimento atendimento = new Atendimento.AtendimentoBuilder().Atendimento(LocalDateTime.of(data, time)).idBarbeiro(idBarbeiro).idBarbearia(idBarbearia).idCliente(idCliente).build();
 
         try {
+
+            if (repository.isHorarioAgendado(atendimento.getAtendimento(), atendimento.getIdBarbeiro())) {
+                return new Response<>(200, "Não foi possível realizar o agendamento, este horário já foi agendado", false);
+            }
+
+            if (isDentroDoHorarioBloqueado(atendimento.getAtendimento(), atendimento.getIdBarbeiro())) {
+                return new Response<>(200, "Não foi possível realizar o agendamento, horário bloqueado pelo barbeiro", false);
+            }
+
             repository.save(atendimento);
-            return new Response<>(201,true);
+            return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }
     }
 
@@ -64,15 +70,25 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         int id = Integer.parseInt(request.getParameter("idAtendimento"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!",false);
+            return new Response<>(400, "Falta de informações!", false);
         }
 
         try {
             repository.delete(id);
-            return new Response<>(204,true);
+            return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(),false);
+            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
         }
 
+    }
+
+    private boolean isDentroDoHorarioBloqueado(LocalDateTime dataHora, int idBarbeiro) throws SQLException {
+        Barbeiro barbeiro = new BarbeiroRepository().searchById(idBarbeiro);
+
+        if (barbeiro == null) return false;
+
+        boolean isDentroDoHorarioBloqueado = barbeiro.getHorarioBloqueado().getInicio().isBefore(dataHora.toLocalTime()) && barbeiro.getHorarioBloqueado().getFim().isAfter(dataHora.toLocalTime());
+
+        return isDentroDoHorarioBloqueado;
     }
 }

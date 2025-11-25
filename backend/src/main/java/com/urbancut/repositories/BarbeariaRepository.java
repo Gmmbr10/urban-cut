@@ -101,13 +101,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         List<Barbearia> barbearias = new ArrayList<>();
 
         while (dados.next()) {
-            Barbearia barbearia = new Barbearia.BarbeariaBuilder()
-                    .nome(dados.getString("nome"))
-                    .idEndereco(dados.getInt("id_endereco"))
-                    .idBarbearia(dados.getInt("id_barbearia"))
-                    .idDono(dados.getInt("id_dono"))
-                    .tempoMedioAtendimento(dados.getTimestamp("tempo_medio").toLocalDateTime().toLocalTime())
-                    .build();
+            Barbearia barbearia = new Barbearia.BarbeariaBuilder().nome(dados.getString("nome")).idEndereco(dados.getInt("id_endereco")).idBarbearia(dados.getInt("id_barbearia")).idDono(dados.getInt("id_dono")).tempoMedioAtendimento(dados.getTimestamp("tempo_medio").toLocalDateTime().toLocalTime()).build();
 
             barbearias.add(barbearia);
         }

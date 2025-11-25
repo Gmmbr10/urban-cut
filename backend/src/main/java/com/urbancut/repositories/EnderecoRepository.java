@@ -63,16 +63,7 @@ public class EnderecoRepository extends Repository implements RepositoryWithRetu
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            endereco = new Endereco.EnderecoBuilder()
-                    .idEndereco(data.getInt("id_endereco"))
-                    .cep(data.getString("cep"))
-                    .estado(data.getString("estado"))
-                    .cidade(data.getString("cidade"))
-                    .bairro(data.getString("bairro"))
-                    .logradouro(data.getString("logradouro"))
-                    .numero(data.getInt("numero"))
-                    .complemento(data.getString("complemento"))
-                    .build();
+            endereco = new Endereco.EnderecoBuilder().idEndereco(data.getInt("id_endereco")).cep(data.getString("cep")).estado(data.getString("estado")).cidade(data.getString("cidade")).bairro(data.getString("bairro")).logradouro(data.getString("logradouro")).numero(data.getInt("numero")).complemento(data.getString("complemento")).build();
         }
 
         return endereco;

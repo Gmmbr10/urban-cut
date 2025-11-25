@@ -113,15 +113,6 @@ public class Endereco extends Model {
 
     @Override
     public String toString() {
-        return "Endereco{" +
-                "idEndereco=" + idEndereco +
-                ", cep='" + cep + '\'' +
-                ", estado='" + estado + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", numero=" + numero +
-                ", complemento='" + complemento + '\'' +
-                '}';
+        return "Endereco{" + "idEndereco=" + idEndereco + ", cep='" + cep + '\'' + ", estado='" + estado + '\'' + ", cidade='" + cidade + '\'' + ", bairro='" + bairro + '\'' + ", logradouro='" + logradouro + '\'' + ", numero=" + numero + ", complemento='" + complemento + '\'' + '}';
     }
 }

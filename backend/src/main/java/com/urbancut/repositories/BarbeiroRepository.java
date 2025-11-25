@@ -42,21 +42,9 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            HorarioBloqueado horarioBloqueado =  data.getTime("inicio") == null ? null : new HorarioBloqueado.HorarioBloqueadoBuilder()
-                    .idHorarioBloqueado(data.getInt("id_horario_bloqueado"))
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .inicio(data.getTime("inicio").toLocalTime())
-                    .fim(data.getTime("fim").toLocalTime())
-                    .build();
+            HorarioBloqueado horarioBloqueado = data.getTime("inicio") == null ? null : new HorarioBloqueado.HorarioBloqueadoBuilder().idHorarioBloqueado(data.getInt("id_horario_bloqueado")).idBarbeiro(data.getInt("id_barbeiro")).inicio(data.getTime("inicio").toLocalTime()).fim(data.getTime("fim").toLocalTime()).build();
 
-            barbeiro = new Barbeiro.BarbeiroBuilder()
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .idBarbearia(data.getInt("id_barbearia"))
-                    .nome(data.getString("nome"))
-                    .senha(data.getString("senha"))
-                    .email(data.getString("email"))
-                    .horarioBloqueado(horarioBloqueado)
-                    .build();
+            barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(data.getInt("id_barbeiro")).idBarbearia(data.getInt("id_barbearia")).nome(data.getString("nome")).senha(data.getString("senha")).email(data.getString("email")).horarioBloqueado(horarioBloqueado).build();
         }
 
         return barbeiro;
@@ -104,21 +92,9 @@ public class BarbeiroRepository extends Repository implements RepositoryInterfac
         ResultSet data = stm.executeQuery();
 
         if (data.next()) {
-            HorarioBloqueado horarioBloqueado =  data.getTime("inicio") == null ? null : new HorarioBloqueado.HorarioBloqueadoBuilder()
-                    .idHorarioBloqueado(data.getInt("id_horario_bloqueado"))
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .inicio(data.getTime("inicio").toLocalTime())
-                    .fim(data.getTime("fim").toLocalTime())
-                    .build();
+            HorarioBloqueado horarioBloqueado = data.getTime("inicio") == null ? null : new HorarioBloqueado.HorarioBloqueadoBuilder().idHorarioBloqueado(data.getInt("id_horario_bloqueado")).idBarbeiro(data.getInt("id_barbeiro")).inicio(data.getTime("inicio").toLocalTime()).fim(data.getTime("fim").toLocalTime()).build();
 
-            barbeiro = new Barbeiro.BarbeiroBuilder()
-                    .idBarbeiro(data.getInt("id_barbeiro"))
-                    .idBarbearia(data.getInt("id_barbearia"))
-                    .nome(data.getString("nome"))
-                    .senha(data.getString("senha"))
-                    .email(data.getString("email"))
-                    .horarioBloqueado(horarioBloqueado)
-                    .build();
+            barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(data.getInt("id_barbeiro")).idBarbearia(data.getInt("id_barbearia")).nome(data.getString("nome")).senha(data.getString("senha")).email(data.getString("email")).horarioBloqueado(horarioBloqueado).build();
         }
 
         return barbeiro;
