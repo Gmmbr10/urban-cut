@@ -23,6 +23,36 @@
 
     <pre id="resultado"></pre>
 
+    <%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.services.BarbeariaService"%>
+<%
+	BarbeariaService service = new BarbeariaService();
+	Response<Boolean> resposta = service.register(request);
+%>
+
+<%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.models.Barbearia"%>
+<%@page import="com.urbancut.services.BarbeariaService"%>
+<%
+	BarbeariaService service = new BarbeariaService();
+	Response<Barbearia> resposta = service.searchById(request);
+%>
+
+<%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.models.Barbearia"%>
+<%@page import="com.urbancut.services.BarbeariaService"%>
+<%
+	BarbeariaService service = new BarbeariaService();
+	Response<Barbearia> resposta = service.searchById(request);
+%>
+
+<%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.services.BarbeariaService"%>
+<%
+	BarbeariaService service = new BarbeariaService();
+	Response<Boolean> resposta = service.delete(request);
+%>
+
     <script src="BarbeariaService.js"></script>
 </body>
 </html>
