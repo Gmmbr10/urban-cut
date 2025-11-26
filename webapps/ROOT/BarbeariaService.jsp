@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>URBAN-CUT</title>
-    ,<link rel="stylesheet" href="BarbeariaService.css"
+    <link rel="stylesheet" href="BarbeariaService.css">
 </head>
 <body>
     <form id="form">
