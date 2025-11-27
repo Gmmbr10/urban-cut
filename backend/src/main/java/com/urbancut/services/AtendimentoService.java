@@ -43,8 +43,12 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         LocalDate data = LocalDate.parse(request.getParameter("data"));
         LocalTime time = LocalTime.parse(request.getParameter("horario"));
 
-        if (idBarbearia == 0 || idBarbeiro == 0 || idCliente == 0 || data.isAfter(LocalDate.now())) {
+        if (idBarbearia == 0 || idBarbeiro == 0 || idCliente == 0 || data == null || time == null) {
             return new Response<>(400, "Falta de informações!", null);
+        }
+
+        if (data.isAfter(LocalDate.now())) {
+            return new Response<>(400,"A data deve ser posterior ao dia atual!",null);
         }
 
         Atendimento atendimento = new Atendimento.AtendimentoBuilder().Atendimento(LocalDateTime.of(data, time)).idBarbeiro(idBarbeiro).idBarbearia(idBarbearia).idCliente(idCliente).build();
