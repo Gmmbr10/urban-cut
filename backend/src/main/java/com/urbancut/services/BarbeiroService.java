@@ -55,9 +55,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             return new Response<>(400, "Falta de informações!", false);
         }
 
-        Integer idBarbearia = request.getParameter("idBarbearia") != null ? Integer.parseInt(request.getParameter("idBarbearia")) : null;
+        Barbeiro barbeiro;
 
-        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).idBarbearia(idBarbearia).build();
+        if (request.getParameter("idBarbearia") == null || request.getParameter("idBarbearia").isBlank()) {
+            barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).build();
+        } else {
+            Integer idBarbearia = Integer.parseInt(request.getParameter("idBarbearia"));
+            barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).idBarbearia(idBarbearia).build();
+        }
 
         try {
             repository.save(barbeiro);
@@ -70,7 +75,6 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
     public Response<Boolean> update(HttpServletRequest request) {
 
         int id = Integer.parseInt(request.getParameter("idBarbeiro"));
-        int id_barbearia = Integer.parseInt(request.getParameter("idBarbearia"));
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
@@ -79,7 +83,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             return new Response<>(400, "Falta de informações!", false);
         }
 
-        Barbeiro barbeiro = new Barbeiro.BarbeiroBuilder().idBarbeiro(id).idBarbearia(id_barbearia).nome(nome).email(email).senha(senha).build();
+        Barbeiro barbeiro;
+
+        if (request.getParameter("idBarbearia") == null || request.getParameter("idBarbearia").isBlank()) {
+            barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).build();
+        } else {
+            Integer idBarbearia = Integer.parseInt(request.getParameter("idBarbearia"));
+            barbeiro = new Barbeiro.BarbeiroBuilder().nome(nome).email(email).senha(senha).idBarbearia(idBarbearia).build();
+        }
 
         try {
             repository.update(barbeiro);
