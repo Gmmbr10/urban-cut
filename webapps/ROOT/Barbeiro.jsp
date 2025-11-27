@@ -1,0 +1,62 @@
+<%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.services.AuthService"%>
+<%@page import="com.urbancut.services.BarbeiroService"%>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Cut - Barbeiro</title>
+</head>
+<body>
+
+    <form name="cadastrar_barbeiro" method="post" action="#">
+
+        <h2>Cadastrar</h2>
+
+        <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
+        <input type="text" name="nome">
+        <input type="email" name="email">
+        <input type="password" name="senha">
+
+        <button type="submit" name="cadastrar">Cadastrar</button>
+
+        <!-- NÃO ALTERAR A ESTRUTURA ABAIXO -->
+        <%
+        
+            if (request.getParameter("cadastrar") != null){
+                BarbeiroService service = new BarbeiroService();
+                Response<Boolean> resposta = service.register(request);
+
+                if (resposta.getStatusCode() == 201) {
+                    out.print("<p>Cadastro realizado com sucesso!</p>");
+                } else {
+                    out.print("<p>");
+                    out.print(resposta.getMensagem());
+                    out.print("</p>");
+                }
+            }
+
+        %>
+
+    </form>
+
+    <form name="login_barbeiro" method="post" action="#">
+
+        <h2>Entrar</h2>
+
+        <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
+        <input type="email" name="email">
+        <input type="password" name="senha">
+        <input type="hidden" name="tipo" value="barbeiro">
+
+        <button type="submit" name="entrar">Entrar</button>
+
+        <!-- NÃO ALTERAR A ESTRUTURA ABAIXO -->
+        <p>Mensagem de sucesso</p>
+        <span>Mensagem de erro</span>
+
+    </form>
+    
+</body>
+</html>
