@@ -23,7 +23,7 @@ public class HorariosDisponiveisService {
         String diaEscolhido = request.getParameter("diaEscolhido");
 
         if (idBarbearia == null || idBarbeiro == null || diaEscolhido.isBlank()) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {

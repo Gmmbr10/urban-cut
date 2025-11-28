@@ -27,7 +27,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
         String idStr = request.getParameter("idDiaFuncionamento");
 
         if (idStr == null) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         int id = Integer.parseInt(idStr);
@@ -36,7 +36,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
             DiaFuncionamento dia = this.repository.searchById(id);
             return new Response<>(200, dia);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -48,7 +48,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
         String horaFechamentoStr = request.getParameter("horaFechamento");
 
         if (idBarbeariaStr == null || diaSemana == null || horaAberturaStr == null || horaFechamentoStr == null) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         if (!isDiaSemanaValido(diaSemana)) {
@@ -65,7 +65,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
             repository.save(dia);
             return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 
@@ -78,7 +78,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
         String horaFechamentoStr = request.getParameter("horaFechamento");
 
         if (idStr == null || idBarbeariaStr == null || diaSemana == null || horaAberturaStr == null || horaFechamentoStr == null) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         if (!isDiaSemanaValido(diaSemana)) {
@@ -96,7 +96,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
             repository.update(dia);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }
@@ -106,7 +106,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
         String idStr = request.getParameter("idDiaFuncionamento");
 
         if (idStr == null) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         int id = Integer.parseInt(idStr);
@@ -115,7 +115,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
             repository.delete(id);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }

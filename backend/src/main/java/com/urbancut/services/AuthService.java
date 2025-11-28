@@ -42,7 +42,7 @@ public class AuthService {
                 }
                 break;
             default:
-                return new Response<>(400, "Falta de informações!", false);
+                return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         return new Response<>(204, true);

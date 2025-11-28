@@ -19,14 +19,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbeiro"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {
             Barbeiro barbeiro = this.repository.searchById(id);
             return new Response<>(200, barbeiro);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -34,14 +34,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         String email = request.getParameter("email");
 
         if (email.isBlank()) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {
             Barbeiro barbeiro = this.repository.searchByEmail(email);
             return new Response<>(200, barbeiro);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -52,7 +52,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         String senha = request.getParameter("senha");
 
         if (nome.isBlank() || email.isBlank() || senha.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         Barbeiro barbeiro;
@@ -68,7 +68,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             repository.save(barbeiro);
             return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -80,7 +80,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         String senha = request.getParameter("senha");
 
         if (id == 0 || nome.isBlank() || email.isBlank() || senha.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         Barbeiro barbeiro;
@@ -96,7 +96,7 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
             repository.update(barbeiro);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), true);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", true);
         }
 
     }
@@ -106,14 +106,14 @@ public class BarbeiroService extends Service<BarbeiroRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbeiro"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         try {
             repository.delete(id);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), true);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", true);
         }
 
     }

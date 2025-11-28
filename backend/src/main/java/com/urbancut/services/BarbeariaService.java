@@ -22,7 +22,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbearia"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {
@@ -31,7 +31,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             barbearia.setDiasFuncionamento(diasFuncionamento);
             return new Response<>(200, barbearia);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -46,7 +46,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         String complemento = request.getParameter("complemento");
 
         if (cep.isBlank() || estado.isBlank() || cidade.isBlank() || bairro.isBlank() || logradouro.isBlank() || numeroStr.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         int numero = Integer.parseInt(numeroStr);
@@ -58,7 +58,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         try {
             enderecoId = (new EnderecoRepository()).saveWithReturn(endereco);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
         int idDono = Integer.parseInt(request.getParameter("idDono"));
@@ -66,7 +66,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
         if (idDono == 0 || nome.isBlank() || tempoMedioAtendimento == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         Barbearia barbearia = new Barbearia.BarbeariaBuilder().idDono(idDono).nome(nome).idEndereco(enderecoId).tempoMedioAtendimento(tempoMedioAtendimento).build();
@@ -75,7 +75,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             repository.save(barbearia);
             return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 
@@ -87,7 +87,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
         if (idDono == 0 || nome.isBlank() || idBarbearia == 0 || tempoMedioAtendimento == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         Barbearia barbearia = new Barbearia.BarbeariaBuilder().idDono(idDono).idBarbearia(idBarbearia).nome(nome).tempoMedioAtendimento(tempoMedioAtendimento).build();
@@ -96,7 +96,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             repository.update(barbearia);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }
@@ -106,14 +106,14 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         int id = Integer.parseInt(request.getParameter("idBarbearia"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         try {
             repository.delete(id);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }

@@ -18,14 +18,14 @@ public class EnderecoService extends Service<EnderecoRepository> {
         int id = Integer.parseInt(request.getParameter("idEndereco"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {
             Endereco endereco = this.repository.searchById(id);
             return new Response<>(200, endereco);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -40,7 +40,7 @@ public class EnderecoService extends Service<EnderecoRepository> {
         String complemento = request.getParameter("complemento");
 
         if (cep.isBlank() || estado.isBlank() || cidade.isBlank() || bairro.isBlank() || logradouro.isBlank() || numeroStr.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         int numero = Integer.parseInt(numeroStr);
@@ -51,7 +51,7 @@ public class EnderecoService extends Service<EnderecoRepository> {
             repository.save(endereco);
             return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 
@@ -67,7 +67,7 @@ public class EnderecoService extends Service<EnderecoRepository> {
         String complemento = request.getParameter("complemento");
 
         if (idStr.isBlank() || cep.isBlank() || estado.isBlank() || cidade.isBlank() || bairro.isBlank() || logradouro.isBlank() || numeroStr.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         int idEndereco = Integer.parseInt(idStr);
@@ -79,7 +79,7 @@ public class EnderecoService extends Service<EnderecoRepository> {
             repository.update(endereco);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }
@@ -89,14 +89,14 @@ public class EnderecoService extends Service<EnderecoRepository> {
         int id = Integer.parseInt(request.getParameter("idEndereco"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         try {
             repository.delete(id);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }

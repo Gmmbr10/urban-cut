@@ -20,14 +20,14 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         int idBarbeiro = Integer.parseInt(request.getParameter("idBarbeiro"));
 
         if (idBarbeiro == 0) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {
             HorarioBloqueado horario = this.repository.searchById(idBarbeiro);
             return new Response<>(200, horario);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -38,7 +38,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         String fimStr = request.getParameter("fim");
 
         if (idBarbeiro == 0 || inicioStr.isBlank() || fimStr.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         if (!TimeValidator.validar(inicioStr) || !TimeValidator.validar(fimStr)) {
@@ -54,7 +54,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
             repository.save(model);
             return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 
@@ -66,7 +66,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         String fimStr = request.getParameter("fim");
 
         if (idBarbeiro == 0 || idHorarioBloqueado == 0 || inicioStr.isBlank() || fimStr.isBlank()) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         if (!TimeValidator.validar(inicioStr) || !TimeValidator.validar(fimStr)) {
@@ -82,7 +82,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
             repository.update(model);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 
@@ -91,14 +91,14 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         int idHorarioBloqueado = Integer.parseInt(request.getParameter("idHorarioBloqueado"));
 
         if (idHorarioBloqueado == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         try {
             repository.delete(idHorarioBloqueado);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 }

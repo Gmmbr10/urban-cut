@@ -24,14 +24,14 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         int id = Integer.parseInt(request.getParameter("idAtendimento"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         try {
             Atendimento atendimento = this.repository.searchById(id);
             return new Response<>(200, atendimento);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), null);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", null);
         }
     }
 
@@ -44,7 +44,7 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         LocalTime time = LocalTime.parse(request.getParameter("horario"));
 
         if (idBarbearia == 0 || idBarbeiro == 0 || idCliente == 0 || data == null || time == null) {
-            return new Response<>(400, "Falta de informações!", null);
+            return new Response<>(400, "Preencha todos os campos!", null);
         }
 
         if (data.isAfter(LocalDate.now())) {
@@ -70,7 +70,7 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
             repository.save(atendimento);
             return new Response<>(201, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
     }
 
@@ -79,14 +79,14 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
         int id = Integer.parseInt(request.getParameter("idAtendimento"));
 
         if (id == 0) {
-            return new Response<>(400, "Falta de informações!", false);
+            return new Response<>(400, "Preencha todos os campos!", false);
         }
 
         try {
             repository.delete(id);
             return new Response<>(204, true);
         } catch (SQLException e) {
-            return new Response<>(500, "Erro durante a execução!\nErro: " + e.getMessage(), false);
+            return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
     }
