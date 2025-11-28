@@ -18,7 +18,7 @@ public class ResumoDiaRepository extends Repository {
     public List<ResumoDia> summary(LocalDate data, int idBarbeiro) throws SQLException {
         List<ResumoDia> summary = new ArrayList<>();
 
-        String query = "SELECT * FROM atendimentos WHERE id_barbeiro = ? AND atendimento BETWEEN ? AND ?";
+        String query = "SELECT * FROM atendimentos WHERE id_barbeiro = ? AND atendimento BETWEEN ? AND ? ORDER BY atendimento";
         PreparedStatement stm = this.database.prepareStatement(query);
 
         stm.setInt(1, idBarbeiro);
