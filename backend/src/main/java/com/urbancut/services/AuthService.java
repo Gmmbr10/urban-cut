@@ -44,7 +44,7 @@ public class AuthService {
 
                         Barbearia barbearia = new BarbeariaRepository().searchById(barbeiro.getIdBarbearia());
 
-                        if (barbearia.getIdDono() == barbeiro.getIdBarbeiro()) {
+                        if (barbearia.getIdDono().equals(barbeiro.getIdBarbeiro())) {
                             session.setAttribute("isDono",true);
                         } else {
                             session.setAttribute("isDono",false);
