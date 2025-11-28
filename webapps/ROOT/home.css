@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+@font-face {
+    font-family: 'Don Graffiti';
+    src: url('https://fonts.cdnfonts.com/s/17383/DonGraffiti.woff') format('woff');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+/* titulos da barbearia*/
+.title-urbancut {
+    font-family: 'Don Graffiti', sans-serif !important;
+    font-size: 5rem;
+    font-weight: normal;
+    color: #f5e3c3; /* bege suave combinando com o logo */
+    text-shadow: 4px 4px 8px #000;
+    letter-spacing: 3px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+/* estilização da header */
+header{
+    background-color:  #2b1503;
+    border-bottom: 1px solid #f5e3c3; 
+
+}
+
+body{
+    background-color: #3e2004;
+    animation: aparecerSuave 1.5s ease-out;
+
+}
+
+@keyframes aparecerSuave {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* menu */
+.nav-bar{
+    display: flex;
+    justify-content: center;     /* CENTRALIZA O MENU */
+    align-items: center;
+    padding: 1.5rem 3rem;
+    position: relative;          /* permite posicionar o botão */
+}
+
+.nav-list ul{
+    list-style: none;
+    display: flex;
+    gap: 1.7rem;                 /* espaço entre itens */
+}
+
+.nav-link{
+    text-decoration: none;
+    color: #f5e3c3;
+    font-size: 20px;
+}
+
+
+
+/* conteudos da pagina */
+.menu-pagina{ 
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 60px; 
+    align-items: center;
+}
+
+.menu-pagina p{
+    margin-top: 15px;
+    margin-left: 15px;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 25px;
+
+}
+
+.imagem{
+    width: 580px;
+}
+
+hr{
+    padding: 2px;
+    background-color: white;
+}
+
+.caixaTexto{
+    margin-top: 15px;
+}
+.caixaTexto p{
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: center;
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
+.rodape {
+    background-color: #2b1503; 
+    padding: 1.2rem;
+    padding-left: 3.5rem;
+    text-align: center;
+    border-top: 1px solid #f5e3c3; 
+}
+
+.rodape p {
+    color: #f5e3c3; /* bege suave */
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.rodape strong {
+    font-weight: 600;
+}
