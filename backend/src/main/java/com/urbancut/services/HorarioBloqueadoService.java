@@ -37,7 +37,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         String inicioStr = request.getParameter("inicio");
         String fimStr = request.getParameter("fim");
 
-        if (idBarbeiro == 0 || inicioStr == null || fimStr == null) {
+        if (idBarbeiro == 0 || inicioStr.isBlank() || fimStr.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
@@ -65,7 +65,7 @@ public class HorarioBloqueadoService extends Service<HorarioBloqueadoRepository>
         String inicioStr = request.getParameter("inicio");
         String fimStr = request.getParameter("fim");
 
-        if (idBarbeiro == 0 || idHorarioBloqueado == 0 || inicioStr == null || fimStr == null) {
+        if (idBarbeiro == 0 || idHorarioBloqueado == 0 || inicioStr.isBlank() || fimStr.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 

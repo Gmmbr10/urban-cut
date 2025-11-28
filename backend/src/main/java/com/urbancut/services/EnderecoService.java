@@ -39,7 +39,7 @@ public class EnderecoService extends Service<EnderecoRepository> {
         String numeroStr = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
 
-        if (cep == null || estado == null || cidade == null || bairro == null || logradouro == null || numeroStr == null) {
+        if (cep.isBlank() || estado.isBlank() || cidade.isBlank() || bairro.isBlank() || logradouro.isBlank() || numeroStr.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
@@ -66,7 +66,7 @@ public class EnderecoService extends Service<EnderecoRepository> {
         String numeroStr = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
 
-        if (idStr == null || cep == null || estado == null || cidade == null || bairro == null || logradouro == null || numeroStr == null) {
+        if (idStr.isBlank() || cep.isBlank() || estado.isBlank() || cidade.isBlank() || bairro.isBlank() || logradouro.isBlank() || numeroStr.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 

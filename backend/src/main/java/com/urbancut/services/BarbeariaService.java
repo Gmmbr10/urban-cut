@@ -45,7 +45,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         String numeroStr = request.getParameter("numero");
         String complemento = request.getParameter("complemento");
 
-        if (cep == null || estado == null || cidade == null || bairro == null || logradouro == null || numeroStr == null) {
+        if (cep.isBlank() || estado.isBlank() || cidade.isBlank() || bairro.isBlank() || logradouro.isBlank() || numeroStr.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
@@ -65,7 +65,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         String nome = request.getParameter("nome");
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
-        if (idDono == 0 || nome == null || tempoMedioAtendimento == 0) {
+        if (idDono == 0 || nome.isBlank() || tempoMedioAtendimento == 0) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
@@ -86,7 +86,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         String nome = request.getParameter("nome");
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
-        if (idDono == 0 || nome == null || idBarbearia == 0 || tempoMedioAtendimento == 0) {
+        if (idDono == 0 || nome.isBlank() || idBarbearia == 0 || tempoMedioAtendimento == 0) {
             return new Response<>(400, "Falta de informações!", false);
         }
 

@@ -22,7 +22,7 @@ public class HorariosDisponiveisService {
         Integer idBarbearia = Integer.parseInt(request.getParameter("idBarbearia"));
         String diaEscolhido = request.getParameter("diaEscolhido");
 
-        if (idBarbearia == null || idBarbeiro == null || diaEscolhido == null) {
+        if (idBarbearia == null || idBarbeiro == null || diaEscolhido.isBlank()) {
             return new Response<>(400, "Falta de informações!", null);
         }
 

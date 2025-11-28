@@ -33,7 +33,7 @@ public class ClienteService extends Service<ClienteRepository> {
     public Response<Cliente> searchByEmail(HttpServletRequest request) {
         String email = request.getParameter("email");
 
-        if (email == null) {
+        if (email.isBlank()) {
             return new Response<>(400, "Falta de informações!", null);
         }
 
@@ -51,7 +51,7 @@ public class ClienteService extends Service<ClienteRepository> {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if (nome == null || email == null || senha == null) {
+        if (nome.isBlank() || email.isBlank() || senha.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
@@ -72,7 +72,7 @@ public class ClienteService extends Service<ClienteRepository> {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if (id == 0 || nome == null || email == null || senha == null) {
+        if (id == 0 || nome.isBlank() || email.isBlank() || senha.isBlank()) {
             return new Response<>(400, "Falta de informações!", false);
         }
 
