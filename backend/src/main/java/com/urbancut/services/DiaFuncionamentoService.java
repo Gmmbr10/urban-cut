@@ -43,7 +43,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
     public Response<Boolean> register(HttpServletRequest request) {
 
         String idBarbeariaStr = request.getParameter("idBarbearia");
-        String diaSemana = request.getParameter("diaSemana");
+        String[] diaSemana = request.getParameterValues("diaSemana");
         String horaAberturaStr = request.getParameter("horaAbertura");
         String horaFechamentoStr = request.getParameter("horaFechamento");
 
@@ -51,18 +51,21 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
             return new Response<>(400, "Preencha todos os campos!", false);
         }
 
-        if (!isDiaSemanaValido(diaSemana)) {
-            return new Response<>(400, "Dia da semana inválido! Valores permitidos: " + DIAS_ENUM, false);
+        for (String dia : diaSemana) {
+            if (!isDiaSemanaValido(dia)) {
+                return new Response<>(400, "Dia da semana inválido! Valores permitidos: " + DIAS_ENUM, false);
+            }
         }
 
         int idBarbearia = Integer.parseInt(idBarbeariaStr);
         LocalTime horaAbertura = LocalTime.parse(horaAberturaStr);
         LocalTime horaFechamento = LocalTime.parse(horaFechamentoStr);
 
-        DiaFuncionamento dia = new DiaFuncionamento.DiasFuncionamentoBuilder().idBarbearia(idBarbearia).diaSemana(diaSemana).horaAbertura(horaAbertura).horaFechamento(horaFechamento).build();
-
         try {
-            repository.save(dia);
+            for (String strDia : diaSemana) {
+                DiaFuncionamento dia = new DiaFuncionamento.DiasFuncionamentoBuilder().idBarbearia(idBarbearia).diaSemana(strDia).horaAbertura(horaAbertura).horaFechamento(horaFechamento).build();
+                repository.save(dia);
+            }
             return new Response<>(201, true);
         } catch (SQLException e) {
             return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
@@ -73,16 +76,11 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
 
         String idStr = request.getParameter("idDiaFuncionamento");
         String idBarbeariaStr = request.getParameter("idBarbearia");
-        String diaSemana = request.getParameter("diaSemana");
         String horaAberturaStr = request.getParameter("horaAbertura");
         String horaFechamentoStr = request.getParameter("horaFechamento");
 
-        if (idStr == null || idBarbeariaStr == null || diaSemana == null || horaAberturaStr == null || horaFechamentoStr == null) {
+        if (idStr == null || idBarbeariaStr == null || horaAberturaStr == null || horaFechamentoStr == null) {
             return new Response<>(400, "Preencha todos os campos!", false);
-        }
-
-        if (!isDiaSemanaValido(diaSemana)) {
-            return new Response<>(400, "Dia da semana inválido! Valores permitidos: " + DIAS_ENUM, false);
         }
 
         int idDiaFuncionamento = Integer.parseInt(idStr);
@@ -90,7 +88,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
         LocalTime horaAbertura = LocalTime.parse(horaAberturaStr);
         LocalTime horaFechamento = LocalTime.parse(horaFechamentoStr);
 
-        DiaFuncionamento dia = new DiaFuncionamento.DiasFuncionamentoBuilder().idDiaFuncionamento(idDiaFuncionamento).idBarbearia(idBarbearia).diaSemana(diaSemana).horaAbertura(horaAbertura).horaFechamento(horaFechamento).build();
+        DiaFuncionamento dia = new DiaFuncionamento.DiasFuncionamentoBuilder().idDiaFuncionamento(idDiaFuncionamento).idBarbearia(idBarbearia).horaAbertura(horaAbertura).horaFechamento(horaFechamento).build();
 
         try {
             repository.update(dia);

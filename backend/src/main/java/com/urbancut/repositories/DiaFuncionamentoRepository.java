@@ -21,14 +21,13 @@ public class DiaFuncionamentoRepository extends Repository implements Repository
 
     @Override
     public void update(DiaFuncionamento model) throws SQLException {
-        String query = "UPDATE dias_funcionamento SET dia_semana=?, hora_abertura=?, hora_fechamento=? WHERE id_dia_funcionamento=? AND id_barbearia=?";
+        String query = "UPDATE dias_funcionamento SET hora_abertura=?, hora_fechamento=? WHERE id_dia_funcionamento=? AND id_barbearia=?";
         PreparedStatement stm = this.database.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        stm.setString(1, model.getDiaSemana());
-        stm.setTime(2, Time.valueOf(model.getHoraAbertura()));
-        stm.setTime(3, Time.valueOf(model.getHoraFechamento()));
-        stm.setInt(4, model.getIdDiaFuncionamento());
-        stm.setInt(5, model.getIdBarbearia());
+        stm.setTime(1, Time.valueOf(model.getHoraAbertura()));
+        stm.setTime(2, Time.valueOf(model.getHoraFechamento()));
+        stm.setInt(3, model.getIdDiaFuncionamento());
+        stm.setInt(4, model.getIdBarbearia());
 
         stm.executeUpdate();
 
