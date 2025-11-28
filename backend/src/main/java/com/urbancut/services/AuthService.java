@@ -1,8 +1,10 @@
 package com.urbancut.services;
 
 import com.urbancut.core.Response;
+import com.urbancut.models.Barbearia;
 import com.urbancut.models.Barbeiro;
 import com.urbancut.models.Cliente;
+import com.urbancut.repositories.BarbeariaRepository;
 import com.urbancut.repositories.BarbeiroRepository;
 import com.urbancut.repositories.ClienteRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +38,21 @@ public class AuthService {
                     }
 
                     session.setAttribute("id", barbeiro.getIdBarbeiro());
+
+                    if (barbeiro.getIdBarbearia() != null) {
+                        session.setAttribute("hasBarbearia",true);
+
+                        Barbearia barbearia = new BarbeariaRepository().searchById(barbeiro.getIdBarbearia());
+
+                        if (barbearia.getIdDono() == barbeiro.getIdBarbeiro()) {
+                            session.setAttribute("isDono",true);
+                        } else {
+                            session.setAttribute("isDono",false);
+                        }
+                    } else {
+                        session.setAttribute("hasBarbearia",false);
+                    }
+
                     session.setAttribute("rule", "barbeiro");
                 } catch (SQLException e) {
                     throw new RuntimeException(e);

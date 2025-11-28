@@ -9,6 +9,7 @@ import com.urbancut.repositories.BarbeariaRepository;
 import com.urbancut.repositories.DiaFuncionamentoRepository;
 import com.urbancut.repositories.EnderecoRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import java.sql.SQLException;
 
@@ -35,7 +36,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
         }
     }
 
-    public Response<Boolean> register(HttpServletRequest request) {
+    public Response<Boolean> register(HttpServletRequest request, HttpSession session) {
 
         String cep = request.getParameter("cep");
         String estado = request.getParameter("estado");
@@ -73,6 +74,8 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
 
         try {
             repository.save(barbearia);
+            session.setAttribute("hasBarbearia",true);
+            session.setAttribute("isDono",true);
             return new Response<>(201, true);
         } catch (SQLException e) {
             return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
