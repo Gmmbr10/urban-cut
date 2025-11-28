@@ -33,9 +33,9 @@
                 <h2 class="titulo">Cadastro</h2>
 
                 <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
-                <input type="text" name="nome" placeholder="Digite o seu nome:"><br><br>
-                <input type="email" name="email" placeholder="Digite o seu e-mail:"><br><br>
-                <input type="password" name="senha" placeholder="Digite a sua senha:"><br><br>
+                <input value="<%= request.getParameter("nome") == null || request.getParameter("nome").isBlank() ? "" : request.getParameter("nome")%>" type="text" name="nome" placeholder="Digite o seu nome:"><br><br>
+                <input value="<%= request.getParameter("email") == null || request.getParameter("email").isBlank() ? "" : request.getParameter("email")%>" type="email" name="email" placeholder="Digite o seu e-mail:"><br><br>
+                <input value="<%= request.getParameter("senha") == null || request.getParameter("senha").isBlank() ? "" : request.getParameter("senha")%>" type="password" name="senha" placeholder="Digite a sua senha:"><br><br>
 
                 <button type="submit" name="cadastrar" class="btn1">Cadastrar</button><br><br>
 
@@ -66,8 +66,8 @@
                 <h2 class="titulo">Login</h2>
 
                 <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
-                <input type="email" name="email" placeholder="Digite o seu e-mail:"><br><br>
-                <input type="password" name="senha" placeholder="Digite a sua senha:"><br><br>
+                <input value="<%= request.getParameter("email") == null || request.getParameter("email").isBlank() ? "" : request.getParameter("email")%>" type="email" name="email" placeholder="Digite o seu e-mail:"><br><br>
+                <input value="<%= request.getParameter("senha") == null || request.getParameter("senha").isBlank() ? "" : request.getParameter("senha")%>" type="password" name="senha" placeholder="Digite a sua senha:"><br><br>
                 <input type="hidden" name="tipo" value="barbeiro">
 
                 <button type="submit" name="entrar" class="btn1">Entrar</button><br><br>
@@ -79,6 +79,5 @@
         </div>
     </div>
 </body>
-<script src="barbeiro.js"></script>
 
 </html>
