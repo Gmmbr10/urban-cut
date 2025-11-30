@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Cut - Funcionário</title>
+    <link rel="stylesheet" href="CadastroFuncionario.css">
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-list">
+                <ul>
+                    <li><a href="home.html" class=nav-link>Home</a></li>
+                    <li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
+                    <li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+                    <li><a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="formu1">
+            <form name="cadastrar_cliente" method="post" action="#">
+
+                <!-- FORMULÁRIO DE CADASTRO -->
+                <div class="container">
+                    <h2>Cadastro</h2>
+
+                    <form name="cadastro">
+                        <label>Nome:</label>
+                        <input type="text" name="nome">
+                        <label>Email:</label>
+                        <input type="email" name="email">
+                        <label>Senha:</label>
+                        <input type="password" name="senha">
+
+                        <span class="erro">Mensagem de erro</span>
+
+                        <button type="submit">Cadastrar</button>
+                    </form>
+                </div>
+
+                <!-- FORMULÁRIO DE LOGIN -->
+                <div class="container">
+                    <h2>Login</h2>
+
+                    <form name="login">
+                        <label>Email:</label>
+                        <input type="email" name="email">
+                        <label>Senha:</label>
+                        <input type="password" name="senha">
+                        <span class="erro">Mensagem de erro</span>
+
+                        <button type="submit">Entrar</button>
+                    </form>
+                </div>
+
+</body>
+
+</html>
