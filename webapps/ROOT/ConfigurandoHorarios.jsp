@@ -18,6 +18,19 @@
 </head>
 <body>
 
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-list">
+                <ul>
+                    <li><a href="home.html" class=nav-link>Home</a></li>
+                    <li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
+                    <li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+                    <li><a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <form name="configurar_horarios" method="post" action="#">
 
         <h2>Configure o horário do seu estabelecimento!</h2>
