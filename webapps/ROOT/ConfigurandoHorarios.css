@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #2b1503;
+    color: #f5e3c3;
+    font-family: "Inter", sans-serif;
+    
+}
+
+/* estilização da header */
+header{
+    background-color:  #2b1503;
+    border-bottom: 1px solid #f5e3c3; 
+
+}
+
+/* menu */
+.nav-bar{
+    display: flex;
+    justify-content: center;     /* CENTRALIZA O MENU */
+    align-items: center;
+    padding: 1.5rem 3rem;
+    position: relative;          /* permite posicionar o botão */
+}
+
+.nav-list ul{
+    list-style: none;
+    display: flex;
+    gap: 1.7rem;                 /* espaço entre itens */
+}
+
+.nav-link{
+    text-decoration: none;
+    color: #f5e3c3;
+    font-size: 20px;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+main{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.titulo-pagina{
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+
+.titulo-pagina p{
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço automático entre checkbox e texto */
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+form {
+    text-align: center;
+}
+
+.hora, .btn-cadastrar {
+    margin: 10px auto;
+    display: block;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5); /* aumenta o tamanho */
+    margin-right: 8px;     /* espaço*/
+}
+
+input[type="time"]{
+    transform: scale(1.5);
+    margin-top: 10px;
+    background-color: #2b1503;
+    color: #f5e3c3;
+    border: 2px solid #f5e3c3;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+input[type="time"]:focus {
+    outline: none;
+    border-color: #d4b585; /* dourado suave */
+    box-shadow: 0 0 6px #d4b585;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);   /* deixa branco */
+}
+
+.btn-cadastrar{
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f5e3c3;
+    font-size: 25px;
+    color: #2b1503;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3 ease;
+}
+
+.btn-cadastrar:hover{
+    transform: scale(1.03);   
+}
+
+.time-input {
+    width: 150px;
+    height: 45px;
+    padding-right: 40px; /* espaço pro ícone */
+    padding-left: 10px;
+    font-size: 22px;
+
+    background: #2b1503 url("../ROOT/templates/icone.png") no-repeat right 10px center;
+    background-size: 24px;
+
+    color: #f5e3c3;
+    border: 2px solid #f5e3c3;
+    border-radius: 12px;
+
+    outline: none;
+}
+
+/* Remove o relógio nativo */
+.time-input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    display: none;
+}
+
+/* Estiliza o placeholder "--:--" */
+.time-input::-webkit-datetime-edit-fields-wrapper {
+    color: #f5e3c3;
+}
+
+.time-input::-webkit-datetime-edit-text {
+    color: #f5e3c3;
+}
+
+.time-input::-webkit-datetime-edit-hour-field,
+.time-input::-webkit-datetime-edit-minute-field {
+    color: #f5e3c3;
+}
+
+.time-input::-webkit-datetime-edit-ampm-field {
+    color: #f5e3c3;
+}
