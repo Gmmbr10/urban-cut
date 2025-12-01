@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <header>
+     <header>
         <nav class="nav-bar">
             <div class="nav-list">
                 <ul>
@@ -26,6 +26,9 @@
                     <li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
                     <li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
                     <li><a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
+                    <li><a href="CadastroEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
+                    <li><a href="ListagemdoEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
+                    <li><a href="PaginaAgendamento.html" class="nav-link">Agendamento</a></li>
                 </ul>
             </div>
         </nav>
