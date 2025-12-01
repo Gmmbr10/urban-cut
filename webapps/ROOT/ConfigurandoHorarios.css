@@ -10,8 +10,22 @@ body{
     background-color: #2b1503;
     color: #f5e3c3;
     font-family: "Inter", sans-serif;
+    animation: aparecerSuave 1.5s ease-out;
     
 }
+
+@keyframes aparecerSuave {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* menu */
 
 /* estilização da header */
 header{
