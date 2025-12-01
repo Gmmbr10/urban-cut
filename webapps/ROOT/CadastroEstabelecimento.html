@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro do Estabelecimento</title>
+</head>
+<body>
+
+    <form name="cadastro_estabelecimento" method="post" action="#">
+
+        <h2>Cadastre seu Estabelecimento</h2>
+
+        <p>Preencha os dados abaixo para registrar sua barbearia na plataforma.</p>
+
+        <label>
+            Nome do Estabelecimento:
+            <input type="text" name="nome_estabelecimento" required>
+        </label>
+<br><br>
+
+        <label>
+            CNPJ:
+            <input type="text" name="cnpj" required placeholder="00.000.000/0000-00">
+        </label>
+<br><br>
+
+
+        <label>
+            Telefone:
+            <input type="text" name="telefone" required placeholder="(00) 00000-0000">
+        </label>
+<br><br>
+
+
+        <label>
+            Endereço:
+            <input type="text" name="endereco" required>
+        </label>
+<br><br>
+
+
+        <label>
+            Email:
+            <input type="email" name="email" required>
+        </label>
+<br><br>
+
+
+        <label>
+            Senha:
+            <input type="password" name="senha" required>
+        </label>
+<br><br>
+
+
+        <button type="submit" name="cadastrar">Cadastrar Estabelecimento</button>
+
+        <span style="visibility: hidden; color: red;">Mensagem de erro</span>
+
+    <form name="login_estabelecimento" method="post" action="#">
+
+        <h2>Entrar no Estabelecimento</h2>
+
+        <p>Faça login para acessar o painel do seu estabelecimento.</p>
+<br><br>
+
+        <label>
+            Email:
+            <input type="email" name="email" required>
+        </label>
+<br><br>
+
+        <label>
+            Senha:
+            <input type="password" name="senha" required>
+        </label>
+<br><br>
+
+        <button type="submit" name="entrar">Entrar</button>
+<br><br>
+
+        <span style="visibility: hidden; color: red;">Mensagem de erro</span>
+
+    </form>
+
+</body>
+</html>
