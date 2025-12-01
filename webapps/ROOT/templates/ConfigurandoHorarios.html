@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Cut - Barbearia</title>
+    <link rel="stylesheet" href="../ConfigurandoHorarios.css"
 </head>
 <body>
 
-    <form name="configurar_horarios" method="post" action="#">
+    
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-list">
+                <ul>
+                    <li><a href="../home.html" class=nav-link>Home</a></li>
+                    <li><a href="../Cliente.jsp" class="nav-link">Cliente</a></li>
+                    <li><a href="../Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+                    <li><a href="../ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
+    <main>
+
+         <div class="titulo-pagina">
         <h2>Configure o horário do seu estabelecimento!</h2>
         <p>
             Selecione os dias que seu estabelecimento abre e indique o horário.
         </p>
-
+        </div>
+        <form name="configurar_horarios" method="post" action="#">
+        
         <label>
             <input type="checkbox" name="diaSemana[]" value="Domingo">
             Domingo
@@ -44,14 +62,15 @@
         </label>
 
         <label for="horaAbertura">Hora que abre:</label>
-        <input type="time" name="horaAbertura">
+        <input type="time" name="horaAbertura" class="time-input">
 
         <label for="horaAbertura">Hora que fecha:</label>
-        <input type="time" name="horaFechamento">
+        <input type="time" name="horaFechamento"  class="time-input">
 
-        <button type="submit" name="cadastrar">Cadastrar</button>
+        <button type="submit" name="cadastrar" class="btn-cadastrar">Cadastrar</button>
 
-    </form>
-    
+        </form>
+    </main>
+
 </body>
 </html>
