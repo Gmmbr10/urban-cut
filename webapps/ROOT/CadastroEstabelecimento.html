@@ -7,6 +7,22 @@
 </head>
 <body>
 
+     <header>
+        <nav class="nav-bar">
+            <div class="nav-list">
+                <ul>
+                    <li><a href="home.html" class=nav-link>Home</a></li>
+                    <li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
+                    <li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+                    <li><a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
+                    <li><a href="CadastroEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
+                    <li><a href="ListagemdoEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
+                    <li><a href="PaginaAgendamento.html" class="nav-link">Agendamento</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <form name="cadastro_estabelecimento" method="post" action="#">
 
         <h2>Cadastre seu Estabelecimento</h2>
@@ -35,7 +51,7 @@
 
         <label>
             Endereço:
-            <input type="text" name="endereco" required>
+            <input type="text" name="endereco" required placeholder>
         </label>
 <br><br>
 
@@ -54,7 +70,7 @@
 <br><br>
 
 
-        <button type="submit" name="cadastrar">Cadastrar Estabelecimento</button>
+        <button type="submit" name="cadastrar">Cadastrar</button>
 
         <span style="visibility: hidden; color: red;">Mensagem de erro</span>
 
