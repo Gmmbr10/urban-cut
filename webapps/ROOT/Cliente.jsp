@@ -77,8 +77,22 @@
                 <button type="submit" name="entrar" class="btn1">Entrar</button><br><br>
 
                 <!-- NÃO ALTERAR A ESTRUTURA ABAIXO -->
-                <span class="sucesso">Mensagem de erro</span>
-                <span class="error">Mensagem de erro</span>
+                <%
+
+                    if (request.getParameter("entrar") != null){
+                        AuthService service = new AuthService();
+	                    Response<Boolean> resposta = service.login(request,session);
+
+                        if (resposta.getStatusCode() == 204) {
+                            response.sendRedirect("HomeCliente.jsp");
+                        } else {
+                            out.print("<span class=\"error\">");
+                            out.print(resposta.getMensagem());
+                            out.print("</span>");
+                        }
+                    }
+
+                %>
             </form>
         </div>
     </div>
