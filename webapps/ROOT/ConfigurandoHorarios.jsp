@@ -1,12 +1,27 @@
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.urbancut.core.Response"%>
+<%@page import="com.urbancut.services.AuthService"%>
+<%@page import="com.urbancut.services.DiaFuncionamentoService"%>
 <%
+	AuthService authService = new AuthService();
+	boolean isLogged = authService.isLogged(session);
 
-    if (request.getParameter("cadastrar") != null) {
-        String[] diaSemana = request.getParameterValues("diaSemana[]");
-        for (String dia : diaSemana){
-            out.print(dia + "<br>");
-        }
+    if (!isLogged) {
+        response.sendRedirect("Barbeiro.jsp");
+        return;
     }
 
+    boolean isThatRule = authService.isThatRule(session,"barbeiro");
+
+    if (!isThatRule) {
+        authService.logout(session);
+        response.sendRedirect("Barbeiro.jsp");
+        return;
+    }
+
+    if (!((boolean) session.getAttribute("isDono"))) {
+        response.sendRedirect("HomeBarbeiro.jsp");
+    }
 %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,17 +33,12 @@
 </head>
 <body>
 
-     <header>
+    <header>
         <nav class="nav-bar">
             <div class="nav-list">
                 <ul>
-                    <li><a href="home.html" class=nav-link>Home</a></li>
-                    <li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
-                    <li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
-                    <li><a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
-                    <li><a href="CadastroEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
-                    <li><a href="ListagemdoEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
-                    <li><a href="PaginaAgendamento.html" class="nav-link">Agendamento</a></li>
+                    <li><a href="../HomeBarbeiro.jsp" class=nav-link>Home</a></li>
+                    <li><a href="../logout.jsp" class="nav-link">Sair</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,41 +52,57 @@
         </p>
 
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Domingo">
+            <input type="checkbox" name="diaSemana" value="Domingo">
             Domingo
         </label>
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Segunda-feira">
+            <input type="checkbox" name="diaSemana" value="Segunda-Feira">
             Segunda-feira
         </label>
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Terça-feira">
+            <input type="checkbox" name="diaSemana" value="Terca-Feira">
             Terça-feira
         </label>
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Quarta-feira">
+            <input type="checkbox" name="diaSemana" value="Quarta-Feira">
             Quarta-feira
         </label>
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Quinta-feira">
+            <input type="checkbox" name="diaSemana" value="Quinta-Feira">
             Quinta-feira
         </label>
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Sexta-feira">
+            <input type="checkbox" name="diaSemana" value="Sexta-Feira">
             Sexta-feira
         </label>
         <label>
-            <input type="checkbox" name="diaSemana[]" value="Sabado">
+            <input type="checkbox" name="diaSemana" value="Sábado">
             Sabado
         </label>
 
         <label for="horaAbertura">Hora que abre:</label>
         <input type="time" name="horaAbertura">
 
-        <label for="horaAbertura">Hora que fecha:</label>
+        <label for="horaFechamento">Hora que fecha:</label>
         <input type="time" name="horaFechamento">
 
-        <button type="submit" name="cadastrar">Cadastrar</button>
+        <button type="submit" name="cadastrar" style="display:block; margin: 1.5rem auto">Cadastrar</button>
+
+        <%
+
+            if (request.getParameter("cadastrar") != null) {
+                DiaFuncionamentoService service = new DiaFuncionamentoService();
+                Response<Boolean> resposta = service.register(request,session);
+
+                if (resposta.getStatusCode() == 201) {
+                    response.sendRedirect("HomeBarbeiro.jsp");
+                } else {
+                    out.print("<span class=\"error\">");
+                    out.print(resposta.getMensagem());
+                    out.print("</span>");
+                }
+            }
+        %>
 
     </form>
     

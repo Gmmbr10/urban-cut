@@ -51,6 +51,7 @@ public class AuthService {
 
                         if (barbearia.getIdDono().equals(barbeiro.getIdBarbeiro())) {
                             session.setAttribute("isDono",true);
+                            session.setAttribute("idBarbearia",barbearia.getIdBarbearia());
                         } else {
                             session.setAttribute("isDono",false);
                         }
