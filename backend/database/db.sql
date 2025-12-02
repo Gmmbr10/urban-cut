@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS barbearias (
 CREATE TABLE IF NOT EXISTS dias_funcionamento (
     id_dia_funcionamento INT AUTO_INCREMENT,
     id_barbearia INT NOT NULL,
-    dia_semana ENUM('Domingo','Segunda-Feira','Terça-Feira','Quarta-Feira','Quinta-Feira','Sexta-Feira','Sábado') NOT NULL,
+    dia_semana ENUM('Domingo','Segunda-Feira','Terca-Feira','Quarta-Feira','Quinta-Feira','Sexta-Feira','Sabado') NOT NULL,
     hora_abertura TIME NOT NULL,
     hora_fechamento TIME NOT NULL,
     created_at DATETIME DEFAULT NOW(),
