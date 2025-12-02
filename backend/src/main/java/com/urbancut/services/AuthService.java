@@ -87,6 +87,8 @@ public class AuthService {
             return false;
         }
         
-        return session.getAttribute("rule").equals(rule.toLowerCase());
+        rule = rule.toLowerCase();
+
+        return session.getAttribute("rule").equals(rule);
     }
 }
