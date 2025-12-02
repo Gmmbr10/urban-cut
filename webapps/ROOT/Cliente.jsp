@@ -26,6 +26,7 @@
                     <li><a href="CadastroEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
                     <li><a href="ListagemdoEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
                     <li><a href="PaginaAgendamento.html" class="nav-link">Agendamento</a></li>
+                    <li><a href="ResumodoDia.html" class="nav-link">Agendamento</a></li>
                 </ul>
             </div>
         </nav>
