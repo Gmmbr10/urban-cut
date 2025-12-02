@@ -62,7 +62,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
         }
 
-        int idDono = Integer.parseInt(request.getParameter("idDono"));
+        int idDono = (int) session.getAttribute("id");
         String nome = request.getParameter("nome");
         int tempoMedioAtendimento = Integer.parseInt(request.getParameter("tempoMedioAtendimento"));
 
