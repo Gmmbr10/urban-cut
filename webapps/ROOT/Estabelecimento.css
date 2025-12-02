@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+header{
+    background-color:  #2b1503;
+    border-bottom: 1px solid #f5e3c3; 
+
+}
+
+body{
+    background-color: #3e2004;
+    animation: aparecerSuave 1.5s ease-out;
+
+}
+
+@keyframes aparecerSuave {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* menu */
+.nav-bar{
+    display: flex;
+    justify-content: center;     /* CENTRALIZA O MENU */
+    align-items: center;
+    padding: 1.5rem 3rem;
+    position: relative;          /* permite posicionar o botão */
+}
+
+.nav-list ul{
+    list-style: none;
+    display: flex;
+    gap: 1.7rem;                 /* espaço entre itens */
+}
+
+.nav-link{
+    text-decoration: none;
+    color: #f5e3c3;
+    font-size: 20px;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+h1{
+    text-align: center;
+    margin-top: 70px;
+    color: #f5e3c3;
+    font-size: 45px;
+}
+/* formulario de listagem*/
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+input{
+    padding: 15px;
+    width: 600px;
+    background-color:#2b1503;
+    color:#f5e3c3;
+    border-color:#f5e3c3;
+    margin-top: 30px;
+    border-radius: 20px;
+}
+input::placeholder{
+    color:grey;
+}
+
+input:focus{
+    outline: none;
+    background-color: #f5e3c3;
+    color: #2b1503;
+}
+
+button{
+    margin: 20px auto;
+    display:block;
+    width: 130px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #f5e3c3;
+    font-size: 15px;
+    transform: translateY(0);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
+}
+
+button:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(0,0,0,0.18);
+}
+
+
+button:active{
+  transform: translateY(-4px);
+  transition: transform 180ms;
+}

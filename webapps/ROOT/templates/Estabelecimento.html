@@ -4,28 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Cut - Barbeiro</title>
+    <link rel="stylesheet" href="../Estabelecimento.css">
 </head>
 <body>
 
-    <form name="cadastro_estabelecimento" method="post" action="#">
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-list">
+                <ul>
+                    <li><a href="../home.html" class=nav-link>Home</a></li>
+                    <li><a href="../Cliente.jsp" class="nav-link">Cliente</a></li>
+                    <li><a href="../Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+                    <li><a href="../ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-        <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
-        <input type="text" name="nome"></br>
-        <input type="number" name="tempoMedioAtendimento"></br>
-        <input type="text" name="cep"></br>
-        <input type="text" name="estado"></br>
-        <input type="text" name="cidade"></br>
-        <input type="text" name="bairro"></br>
-        <input type="text" name="logradouro"></br>
-        <input type="text" name="numero"></br>
-        <input type="text" name="complemento"></br>
 
-        <button name="cadastrar" type="submit">Cadastrar</button>
+    <main>
+        <h1>Listagem de Estabelecimentos</h1>
+        <div class="container">
+        <form name="cadastro_estabelecimento" method="post" action="#">
 
-        <p>Mensagem de sucesso</p>
-        <p>Mensagem de erro</p>
+            <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
+            <input type="text" name="nome" placeholder="Nome do estabelecimento"></br>
+            <input type="number" name="tempoMedioAtendimento" placeholder="Tempo médio de atendimento"></br>
+            <input type="text" name="cep" placeholder="CEP"></br>
+            <input type="text" name="estado" placeholder="Estado"></br>
+            <input type="text" name="cidade" placeholder="Cidade"></br>
+            <input type="text" name="bairro" placeholder="Bairro"></br>
+            <input type="text" name="logradouro" placeholder="Logradouro"></br>
+            <input type="text" name="numero" placeholder="Número"></br>
+            <input type="text" name="complemento" placeholder="Complemento"></br>
+            
+            <button name="cadastrar" type="submit">Cadastrar</button>
 
-    </form>
-    
+            <span class="sucesso">Mensagem de sucesso</span>
+            <span class="erro">Mensagem de erro</span>
+
+        </form>
+        </div>
+    </main>   
 </body>
 </html>
