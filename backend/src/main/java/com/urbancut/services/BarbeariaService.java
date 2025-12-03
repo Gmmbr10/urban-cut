@@ -76,6 +76,7 @@ public class BarbeariaService extends Service<BarbeariaRepository> {
             repository.save(barbearia);
             session.setAttribute("hasBarbearia",true);
             session.setAttribute("isDono",true);
+            session.setAttribute("idBarbearia", (new BarbeariaRepository()).searchById(idDono).getIdBarbearia());
             return new Response<>(201, true);
         } catch (SQLException e) {
             return new Response<>(500, "Não foi possível realizar esta ação! Erro no lado do servidor!", false);
