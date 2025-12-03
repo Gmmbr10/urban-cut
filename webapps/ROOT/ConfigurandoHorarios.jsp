@@ -76,7 +76,7 @@
             Sexta-feira
         </label>
         <label>
-            <input type="checkbox" name="diaSemana" value="Sábado">
+            <input type="checkbox" name="diaSemana" value="Sabado">
             Sabado
         </label>
 
