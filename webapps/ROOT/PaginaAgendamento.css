@@ -192,10 +192,23 @@ button{
     cursor: pointer;
 }
 
-.btn-agendar{
-    transition: all 0.3 ease;
+button{
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    padding: 8px;
+    background-color: #f5e3c3;
+    font-size: 18px;
+    color: #2b1503;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.8s ease;;
+    margin-top: 25px;
 }
 
-.btn-agendar:hover{
-    transform: scale(1.03);   
+button:hover{
+    color: #f5e3c3;
+    background-color:  #2b1503;
+    transform: scale(1.1);
 }
+

@@ -3,13 +3,27 @@
 
 *{
     margin: 0;
-    padding:0;
-    box-sizing: border-box;
+    padding: 0;
+    font-family: "Inter", sans-serif;
 }
 
+/* titulos da barbearia*/
+.title-urbancut {
+    font-family: 'Don Graffiti', sans-serif !important;
+    font-size: 5rem;
+    font-weight: normal;
+    color: #f5e3c3; /* bege suave combinando com o logo */
+    text-shadow: 4px 4px 8px #000;
+    letter-spacing: 3px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+/* estilização da header */
 header{
-    background-color: #2b1503;
-    border-bottom: 2px solid #f5e3c3;
+    background-color:  #2b1503;
+    border-bottom: 1px solid #f5e3c3; 
+
 }
 
 body{
@@ -29,7 +43,7 @@ body{
     }
 }
 
-
+/* menu */
 .nav-bar{
     display: flex;
     justify-content: center;     /* CENTRALIZA O MENU */
@@ -58,50 +72,54 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    min-height: 70vh;
-    color: #f5e3c3;
+    min-height: 100vh;
+
 }
 
 form{
-    margin: 130px;
+    margin: 70px;
+    color: #f5e3c3;
     border: 2px solid #f5e3c3;
-    padding: 100px;
-    border-radius: 100px;
+    padding: 60px;
+    border-radius: 20px;
 }
 
 label{
-    font-size: 22px;
-    margin: 35px;
-}
-
-input{
-    display: block;
-    padding: 15px;
-    border-radius: 14px;
-    background-color: #2b1503;
-    border: 2px solid #f5e3c3;
-    margin-top: 10px;
-    color: #f5e3c3;
+    font-size: 25px;
 }
 
 h2{
     margin-bottom: 35px;
-    font-size: 35px;
+}
+
+p{
+    margin-bottom: 35px;
+    font-size: 22px;
+}
+
+input{
+    background-color: #2b1503;
+    padding: 8px;
+    width: 300px;
+    border-radius: 14px;
+    border: 2px solid #f5e3c3;
+    color: #f5e3c3;
+    margin-left: 10px;
+    margin-bottom: 15px;
 }
 
 button{
     display: block;
     margin: 10px auto;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 14px;
+    padding: 20px;
     background-color: #f5e3c3;
     font-size: 18px;
     color: #2b1503;
     border: none;
     cursor: pointer;
     transition: transform 0.8s ease;;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 button:hover{
@@ -115,4 +133,3 @@ input:focus{
     background-color: #f5e3c3;
     color: #2b1503;
 }
-

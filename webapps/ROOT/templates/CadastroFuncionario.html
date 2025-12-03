@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Cut - Funcionário</title>
-    <link rel="stylesheet" href="CadastroFuncionario.css">
+    <link rel="stylesheet" href="../CadastroFuncionario.css">
 </head>
 
 <body>
@@ -28,41 +28,36 @@
     </header>
 
     <div class="container">
-        <div class="formu1">
+        <form>
             <form name="cadastrar_cliente" method="post" action="#">
-
                 <!-- FORMULÁRIO DE CADASTRO -->
-                <div class="container">
                     <h2>Cadastro</h2>
 
                     <form name="cadastro">
                         <label>Nome:</label>
-                        <input type="text" name="nome">
+                        <input type="text" name="nome" placeholder="Digite seu nome completo">
                         <label>Email:</label>
-                        <input type="email" name="email">
+                        <input type="email" name="email" placeholder="Digite seu email">
                         <label>Senha:</label>
-                        <input type="password" name="senha">
-
-                        <span class="erro">Mensagem de erro</span>
-
+                        <input type="password" name="senha" placeholder="Digite sua senha">
                         <button type="submit">Cadastrar</button>
+                        <span class="erro">Mensagem de erro</span>
                     </form>
-                </div>
 
                 <!-- FORMULÁRIO DE LOGIN -->
-                <div class="container">
-                    <h2>Login</h2>
 
-                    <form name="login">
+                    <form name="login" method="post" action="#">
+
+                        <h2>Login</h2>
                         <label>Email:</label>
-                        <input type="email" name="email">
+                        <input type="email" name="email" placeholder="Digite seu email">
                         <label>Senha:</label>
-                        <input type="password" name="senha">
-                        <span class="erro">Mensagem de erro</span>
-
+                        <input type="password" name="senha" placeholder="Digite sua senha">
                         <button type="submit">Entrar</button>
+                        <span class="erro">Mensagem de erro</span>
                     </form>
                 </div>
+            </div>
 
 </body>
 

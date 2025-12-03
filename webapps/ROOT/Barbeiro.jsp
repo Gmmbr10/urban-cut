@@ -1,3 +1,4 @@
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.urbancut.core.Response"%>
 <%@page import="com.urbancut.services.AuthService"%>
 <%@page import="com.urbancut.services.BarbeiroService"%>
@@ -77,8 +78,22 @@
                 <button type="submit" name="entrar" class="btn1">Entrar</button><br><br>
 
                 <!-- NÃO ALTERAR A ESTRUTURA ABAIXO -->
-                <span class="sucesso">Mensagem de erro</span>
-                <span class="error">Mensagem de erro</span>
+                <%
+
+                    if (request.getParameter("entrar") != null){
+                        AuthService service = new AuthService();
+	                    Response<Boolean> resposta = service.login(request,session);
+
+                        if (resposta.getStatusCode() == 204) {
+                            response.sendRedirect("HomeBarbeiro.jsp");
+                        } else {
+                            out.print("<span class=\"error\">");
+                            out.print(resposta.getMensagem());
+                            out.print("</span>");
+                        }
+                    }
+
+                %>
             </form>
         </div>
     </div>

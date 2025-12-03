@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urban Cut - Cadastro do Estabelecimento</title>
+    <link rel="stylesheet" href="../CadastroEstabelecimento.css">
 </head>
 <body>
 
@@ -23,6 +24,7 @@
         </nav>
     </header>
 
+    <div class="container">
     <form name="cadastro_estabelecimento" method="post" action="#">
 
         <h2>Cadastre seu Estabelecimento</h2>
@@ -31,7 +33,7 @@
 
         <label>
             Nome do Estabelecimento:
-            <input type="text" name="nome_estabelecimento" required>
+            <input type="text" name="nome_estabelecimento" required placeholder="Digite o nome do seu estabelecimento">
         </label>
 <br><br>
 
@@ -51,21 +53,21 @@
 
         <label>
             Endereço:
-            <input type="text" name="endereco" required placeholder>
+            <input type="text" name="endereco" required placeholder="Digite seu endereço">
         </label>
 <br><br>
 
 
         <label>
             Email:
-            <input type="email" name="email" required>
+            <input type="email" name="email" required placeholder="Digite seu email">
         </label>
 <br><br>
 
 
         <label>
             Senha:
-            <input type="password" name="senha" required>
+            <input type="password" name="senha" required placeholder="Digite sua senha">
         </label>
 <br><br>
 
@@ -73,6 +75,7 @@
         <button type="submit" name="cadastrar">Cadastrar</button>
 
         <span style="visibility: hidden; color: red;">Mensagem de erro</span>
+    </form>
 
     <form name="login_estabelecimento" method="post" action="#">
 
@@ -83,13 +86,13 @@
 
         <label>
             Email:
-            <input type="email" name="email" required>
+            <input type="email" name="email" required placeholder="Digite seu email">
         </label>
 <br><br>
 
         <label>
             Senha:
-            <input type="password" name="senha" required>
+            <input type="password" name="senha" required placeholder="Digite sua senha">
         </label>
 <br><br>
 
@@ -99,6 +102,6 @@
         <span style="visibility: hidden; color: red;">Mensagem de erro</span>
 
     </form>
-
+    </div>
 </body>
 </html>

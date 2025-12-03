@@ -14,6 +14,11 @@ import java.sql.SQLException;
 
 public class AuthService {
     public Response<Boolean> login(HttpServletRequest request, HttpSession session) {
+
+        if (request.getParameter("email").isBlank() || request.getParameter("senha").isBlank()) {
+            return new Response<>(400, "Preencha os campos!", false);
+        }
+
         switch (request.getParameter("tipo").toLowerCase()) {
             case "cliente":
                 try {
@@ -46,6 +51,7 @@ public class AuthService {
 
                         if (barbearia.getIdDono().equals(barbeiro.getIdBarbeiro())) {
                             session.setAttribute("isDono",true);
+                            session.setAttribute("idBarbearia",barbearia.getIdBarbearia());
                         } else {
                             session.setAttribute("isDono",false);
                         }
@@ -74,10 +80,16 @@ public class AuthService {
     }
 
     public boolean isLogged(HttpSession session) {
-        return session != null;
+        return session.getAttribute("id") != null;
     }
 
     public boolean isThatRule(HttpSession session, String rule) {
-        return session.getAttribute("rule").equals(rule.toLowerCase());
+        if (session.getAttribute("rule") == null) {
+            return false;
+        }
+        
+        rule = rule.toLowerCase();
+
+        return session.getAttribute("rule").equals(rule);
     }
 }

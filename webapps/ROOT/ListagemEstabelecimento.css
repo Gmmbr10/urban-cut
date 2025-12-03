@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
+
 *{
     margin: 0;
     padding:0;
@@ -54,65 +55,7 @@ body{
     color: white;
 }
 
-.container{
+.conteudo{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 70vh;
-    color: #f5e3c3;
+    justify-content:center
 }
-
-form{
-    margin: 130px;
-    border: 2px solid #f5e3c3;
-    padding: 100px;
-    border-radius: 100px;
-}
-
-label{
-    font-size: 22px;
-    margin: 35px;
-}
-
-input{
-    display: block;
-    padding: 15px;
-    border-radius: 14px;
-    background-color: #2b1503;
-    border: 2px solid #f5e3c3;
-    margin-top: 10px;
-    color: #f5e3c3;
-}
-
-h2{
-    margin-bottom: 35px;
-    font-size: 35px;
-}
-
-button{
-    display: block;
-    margin: 10px auto;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #f5e3c3;
-    font-size: 18px;
-    color: #2b1503;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.8s ease;;
-    margin-top: 25px;
-}
-
-button:hover{
-    color: #f5e3c3;
-    background-color:  #2b1503;
-    transform: scale(1.1);
-}
-
-input:focus{
-    outline: none;
-    background-color: #f5e3c3;
-    color: #2b1503;
-}
-

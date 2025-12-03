@@ -5,6 +5,7 @@ import com.urbancut.core.Service;
 import com.urbancut.models.DiaFuncionamento;
 import com.urbancut.repositories.DiaFuncionamentoRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import java.sql.SQLException;
 import java.time.LocalTime;
@@ -12,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository> {
-    private static final List<String> DIAS_ENUM = Arrays.asList("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+    private static final List<String> DIAS_ENUM = Arrays.asList("Domingo", "Segunda-Feira", "Terca-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sabado");
 
     public DiaFuncionamentoService() {
         this.repository = new DiaFuncionamentoRepository();
@@ -40,14 +41,13 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
         }
     }
 
-    public Response<Boolean> register(HttpServletRequest request) {
+    public Response<Boolean> register(HttpServletRequest request, HttpSession session) {
 
-        String idBarbeariaStr = request.getParameter("idBarbearia");
         String[] diaSemana = request.getParameterValues("diaSemana");
         String horaAberturaStr = request.getParameter("horaAbertura");
         String horaFechamentoStr = request.getParameter("horaFechamento");
 
-        if (idBarbeariaStr == null || diaSemana == null || horaAberturaStr == null || horaFechamentoStr == null) {
+        if (diaSemana == null || horaAberturaStr == null || horaFechamentoStr == null) {
             return new Response<>(400, "Preencha todos os campos!", false);
         }
 
@@ -57,7 +57,7 @@ public class DiaFuncionamentoService extends Service<DiaFuncionamentoRepository>
             }
         }
 
-        int idBarbearia = Integer.parseInt(idBarbeariaStr);
+        int idBarbearia = (int) session.getAttribute("idBarbearia");
         LocalTime horaAbertura = LocalTime.parse(horaAberturaStr);
         LocalTime horaFechamento = LocalTime.parse(horaFechamentoStr);
 
