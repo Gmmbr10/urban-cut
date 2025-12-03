@@ -24,6 +24,10 @@ public class AuthService {
                 try {
                     Cliente cliente = new ClienteRepository().searchByEmail(request.getParameter("email"));
 
+                    if (cliente == null) {
+                        return new Response<>(400, "Email ou senha incorreto!", false);
+                    }
+
                     if (!cliente.getSenha().equals(request.getParameter("senha"))) {
                         return new Response<>(400, "Email ou senha incorreto!", false);
                     }
@@ -37,6 +41,10 @@ public class AuthService {
             case "barbeiro":
                 try {
                     Barbeiro barbeiro = new BarbeiroRepository().searchByEmail(request.getParameter("email"));
+
+                    if (barbeiro == null) {
+                        return new Response<>(400, "Email ou senha incorreto!", false);
+                    }
 
                     if (!barbeiro.getSenha().equals(request.getParameter("senha"))) {
                         return new Response<>(400, "Email ou senha incorreto!", false);
