@@ -1,6 +1,14 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.urbancut.core.Response"%>
 <%@page import="com.urbancut.services.AuthService"%>
+<%@page import="com.urbancut.repositories.BarbeariaRepository"%>
+<%@page import="com.urbancut.repositories.DiaFuncionamentoRepository"%>
+<%@page import="com.urbancut.repositories.EnderecoRepository"%>
+<%@page import="com.urbancut.models.Barbeiro"%>
+<%@page import="com.urbancut.models.Barbearia"%>
+<%@page import="com.urbancut.models.DiaFuncionamento"%>
+<%@page import="com.urbancut.models.Endereco"%>
+<%@page import="java.util.List"%>
 <%
 	AuthService service = new AuthService();
 	boolean isLogged = service.isLogged(session);
@@ -31,21 +39,11 @@
 			<nav class="nav-bar">
 				<div class="nav-list">
 					<ul>
-						<li><a href="home.html" class="nav-link">Home</a></li>
-						<li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
-						<li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+						<li><a href="HomeCliente.jsp" class="nav-link">Home</a></li>
 						<li>
-							<a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a>
-						</li>
-						<li>
-							<a href="CadastroEstabelecimento.html" class="nav-link"
-								>Estabelecimento</a
-							>
-						</li>
-						<li>
-							<a href="ListagemdoEstabelecimento.html" class="nav-link"
-								>Listagem de Estabelecimento</a
-							>
+							<a href="logout.jsp" class="nav-link">
+                                Sair
+                            </a>
 						</li>
 					</ul>
 				</div>
@@ -56,65 +54,56 @@
 			<section class="container-cards">
 				<h1 class="tituloBarber">Barbearias disponíveis</h1>
 
-				<div class="card">
-					<h2>Nome da barbearia</h2>
+				<%
+                
+                    BarbeariaRepository barbeariaRepository = new BarbeariaRepository();
+                    DiaFuncionamentoRepository diaRepository = new DiaFuncionamentoRepository();
 
-					<h3>Atendemos nos seguintes dias:</h3>
-					<ul>
-						<li>Terça-feira: 00:00 às 00:00</li>
-						<li>Quarta-feira: 00:00 às 00:00</li>
-						<li>Quinta-feira: 00:00 às 00:00</li>
-						<li>Sexta-feira: 00:00 às 00:00</li>
-						<li>Sábado: 00:00 às 00:00</li>
-						<li>Domingo: 00:00 às 00:00</li>
-					</ul>
+                    List<Barbearia> barbearias = barbeariaRepository.all();
 
-					<h3>Endereço</h3>
-					<ul>
-						<li>Estado - Cidade</li>
-						<li>Logradouro, Número, Complemento</li>
-					</ul>
-				</div>
+                    for (Barbearia b : barbearias) {
 
-				<div class="card">
-					<h2>Nome da barbearia</h2>
+                        List<DiaFuncionamento> dias = diaRepository.searchByBarbearia(b.getIdBarbearia());
+                        Endereco endereco = new EnderecoRepository().searchById(b.getIdEndereco());
 
-					<h3>Atendemos nos seguintes dias:</h3>
-					<ul>
-						<li>Terça-feira: 00:00 às 00:00</li>
-						<li>Quarta-feira: 00:00 às 00:00</li>
-						<li>Quinta-feira: 00:00 às 00:00</li>
-						<li>Sexta-feira: 00:00 às 00:00</li>
-						<li>Sábado: 00:00 às 00:00</li>
-						<li>Domingo: 00:00 às 00:00</li>
-					</ul>
+                        b.setDiasFuncionamento(dias.toArray(new DiaFuncionamento[0]));
 
-					<h3>Endereço</h3>
-					<ul>
-						<li>Estado - Cidade</li>
-						<li>Logradouro, Número, Complemento</li>
-					</ul>
-				</div>
+                %>
 
-				<div class="card">
-					<h2>Nome da barbearia</h2>
+                    <div class="card">
+                        <h2><%=b.getNome()%></h2>
 
-					<h3>Atendemos nos seguintes dias:</h3>
-					<ul>
-						<li>Terça-feira: 00:00 às 00:00</li>
-						<li>Quarta-feira: 00:00 às 00:00</li>
-						<li>Quinta-feira: 00:00 às 00:00</li>
-						<li>Sexta-feira: 00:00 às 00:00</li>
-						<li>Sábado: 00:00 às 00:00</li>
-						<li>Domingo: 00:00 às 00:00</li>
-					</ul>
+                        <h3>Atendemos nos seguintes dias:</h3>
+                        <ul>
+                            <%
+                            
+                                for (DiaFuncionamento d : b.getDiasFuncionamento()){
+                                    %>
 
-					<h3>Endereço</h3>
-					<ul>
-						<li>Estado - Cidade</li>
-						<li>Logradouro, Número, Complemento</li>
-					</ul>
-				</div>
+                                        <li>
+                                            <%=d.getDiaSemana()%>:
+                                            <%=d.getHoraAbertura()%> às
+                                            <%=d.getHoraFechamento()%>
+                                        </li>
+
+                                    <%
+                                }
+                            
+                            %>
+                        </ul>
+
+                        <h3>Endereço</h3>
+                        <ul>
+                            <li><%=endereco.getCep()%> - <%=endereco.getEstado()%> - <%=endereco.getCidade()%> - <%=endereco.getBairro()%> - <%=endereco.getLogradouro()%></li>
+                            <li>Número: <%=endereco.getNumero()%></li>
+                            <%=endereco.getComplemento() == null || endereco.getComplemento().isBlank() ? "" : "<li>Complemento: " + endereco.getComplemento() + "</li>"%>
+                        </ul>
+                    </div>
+
+                <%
+                    }
+
+                %>
 			</section>
 		</section>
 	</body>
