@@ -2,6 +2,8 @@
 <%@page import="com.urbancut.core.Response"%>
 <%@page import="com.urbancut.services.AuthService"%>
 <%@page import="com.urbancut.services.DiaFuncionamentoService"%>
+<%@page import="com.urbancut.models.DiaFuncionamento"%>
+<%@page import="com.urbancut.repositories.DiaFuncionamentoRepository"%>
 <%
 	AuthService authService = new AuthService();
 	boolean isLogged = authService.isLogged(session);
@@ -20,6 +22,12 @@
     }
 
     if (!((boolean) session.getAttribute("isDono"))) {
+        response.sendRedirect("HomeBarbeiro.jsp");
+    }
+
+    DiaFuncionamento[] dias = new DiaFuncionamentoRepository().searchByBarbearia((int) session.getAttribute("idBarbearia")).toArray(new DiaFuncionamento[0]);
+
+    if (dias.length >= 1) {
         response.sendRedirect("HomeBarbeiro.jsp");
     }
 %>
