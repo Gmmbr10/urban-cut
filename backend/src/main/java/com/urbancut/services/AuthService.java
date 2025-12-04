@@ -56,10 +56,10 @@ public class AuthService {
                         session.setAttribute("hasBarbearia",true);
 
                         Barbearia barbearia = new BarbeariaRepository().searchById(barbeiro.getIdBarbearia());
+                        session.setAttribute("idBarbearia",barbearia.getIdBarbearia());
 
                         if (barbearia.getIdDono().equals(barbeiro.getIdBarbeiro())) {
                             session.setAttribute("isDono",true);
-                            session.setAttribute("idBarbearia",barbearia.getIdBarbearia());
                         } else {
                             session.setAttribute("isDono",false);
                         }
