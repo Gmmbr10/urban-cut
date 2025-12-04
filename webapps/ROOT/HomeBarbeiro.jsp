@@ -30,7 +30,7 @@
         response.sendRedirect("Estabelecimento.jsp");
     }
 
-    if (((boolean) session.getAttribute("hasBarbearia")) && ((boolean) session.getAttribute("isDono"))) {
+    if (((boolean) session.getAttribute("hasBarbearia")) && session.getAttribute("isDono") != null && ((boolean) session.getAttribute("isDono"))) {
         DiaFuncionamento[] dias = new DiaFuncionamentoRepository().searchByBarbearia((int) session.getAttribute("idBarbearia")).toArray(new DiaFuncionamento[0]);
 
         if (dias.length <= 0) {
@@ -52,6 +52,13 @@
 				<div class="nav-list">
 					<ul>
 						<li><a href="HomeBarbeiro.jsp" class="nav-link">Home</a></li>
+                        <%
+                        
+                            if (session.getAttribute("isDono") != null && ((boolean) session.getAttribute("isDono"))) {
+                                out.print("<li><a href=\"CadastroFuncionario.jsp\" class=\"nav-link\">Cadastrar Funcionario</a></li>");
+                            }
+
+                        %>
 						<li>
 							<a href="logout.jsp" class="nav-link">
                                 Sair
