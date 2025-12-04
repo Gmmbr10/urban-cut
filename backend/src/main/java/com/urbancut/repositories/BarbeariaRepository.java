@@ -54,7 +54,7 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         return barbearia;
     }
 
-    private Barbeiro[] searchBarbeiros(int id) throws SQLException {
+    public Barbeiro[] searchBarbeiros(int id) throws SQLException {
         List<Barbeiro> barbeiros = new ArrayList<>();
 
         String query = "SELECT * FROM barbeiros WHERE id_barbearia = ?";

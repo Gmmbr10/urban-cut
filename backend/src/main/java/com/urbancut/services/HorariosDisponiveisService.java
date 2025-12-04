@@ -10,11 +10,13 @@ import com.urbancut.repositories.DiaFuncionamentoRepository;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.SQLException;
-import java.time.DayOfWeek;
+import java.text.Normalizer;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class HorariosDisponiveisService {
     public Response<List<LocalTime>> list(HttpServletRequest request){
@@ -29,33 +31,11 @@ public class HorariosDisponiveisService {
         try {
             Barbeiro barbeiro = new BarbeiroRepository().searchById(idBarbeiro);
             Barbearia barbearia = new BarbeariaRepository().searchById(idBarbearia);
-            DayOfWeek dia = LocalDate.parse(diaEscolhido).getDayOfWeek();
 
-            String diaSemana = null;
-
-            switch (dia) {
-                case SUNDAY:
-                    diaSemana = "Domingo";
-                    break;
-                case MONDAY:
-                    diaSemana = "Segunda-feira";
-                    break;
-                case TUESDAY:
-                    diaSemana = "Terça-feira";
-                    break;
-                case WEDNESDAY:
-                    diaSemana = "Quarta-feira";
-                    break;
-                case THURSDAY:
-                    diaSemana = "Quinta-feira";
-                    break;
-                case FRIDAY:
-                    diaSemana = "Sexta-feira";
-                    break;
-                case SATURDAY:
-                    diaSemana = "Sábado";
-                    break;
-            }
+            String diaSemana = LocalDate.parse(diaEscolhido).getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
+            diaSemana = Normalizer.normalize(diaSemana, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+            diaSemana = diaSemana.substring(0, 1).toUpperCase() + diaSemana.substring(1);
+            diaSemana = diaSemana.replace("feira","Feira");
 
             List<DiaFuncionamento> diasFuncionamento = new DiaFuncionamentoRepository().searchByBarbearia(barbearia.getIdBarbearia());
 
@@ -76,16 +56,27 @@ public class HorariosDisponiveisService {
 
             LocalTime horaAdicionada = diaFuncionamento.getHoraAbertura();
 
-            while ( barbeiro.getHorarioBloqueado().getInicio().minusMinutes(1).isAfter(horaAdicionada) ) {
-                horariosDisponiveis.add(horaAdicionada);
-                horaAdicionada.plusMinutes(Long.parseLong(barbearia.getTempoMedioAtendimento().toString()));
-            }
+            if (barbeiro.getHorarioBloqueado() != null) {
 
-            horaAdicionada = barbeiro.getHorarioBloqueado().getFim();
+                while ( barbeiro.getHorarioBloqueado().getInicio().minusMinutes(1).isAfter(horaAdicionada) ) {
+                    horariosDisponiveis.add(horaAdicionada);
+                    horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
+                }
 
-            while ( barbeiro.getHorarioBloqueado().getFim().minusMinutes(Long.parseLong(barbearia.getTempoMedioAtendimento().toString())).isAfter(horaAdicionada) ) {
-                horariosDisponiveis.add(horaAdicionada);
-                horaAdicionada.plusMinutes(Long.parseLong(barbearia.getTempoMedioAtendimento().toString()));
+                horaAdicionada = barbeiro.getHorarioBloqueado().getFim();
+
+                while ( diaFuncionamento.getHoraFechamento().minusMinutes(barbearia.getTempoMedioAtendimento().getMinute()).isAfter(horaAdicionada) ) {
+                    horariosDisponiveis.add(horaAdicionada);
+                    horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
+                }
+
+            } else {
+
+                while ( diaFuncionamento.getHoraFechamento().minusMinutes(1).isAfter(horaAdicionada) ) {
+                    horariosDisponiveis.add(horaAdicionada);
+                    horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
+                }
+
             }
 
             return new Response<>(204, horariosDisponiveis);

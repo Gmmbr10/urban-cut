@@ -17,7 +17,6 @@ com/urbancut/core/interfaces/RepositoryWithReturnInterface.class
 com/urbancut/repositories/BarbeariaRepository.class
 com/urbancut/models/Atendimento.class
 com/urbancut/repositories/AtendimentoRepository.class
-com/urbancut/services/HorariosDisponiveisService$1.class
 com/urbancut/services/BarbeiroService.class
 com/urbancut/models/ResumoDia$ResumoDiaBuilder.class
 com/urbancut/utils/HorarioValidator.class
