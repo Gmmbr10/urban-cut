@@ -54,6 +54,25 @@ public class BarbeariaRepository extends Repository implements RepositoryInterfa
         return barbearia;
     }
 
+    public Barbearia searchByDono(int id) throws SQLException {
+        Barbearia barbearia = null;
+
+        String query = "SELECT * FROM barbearias WHERE id_dono = ?";
+        PreparedStatement stm = this.database.prepareStatement(query);
+
+        stm.setInt(1, id);
+
+        ResultSet data = stm.executeQuery();
+
+        if (data.next()) {
+            barbearia = new Barbearia.BarbeariaBuilder().idBarbearia(data.getInt("id_barbearia")).idDono(data.getInt("id_dono")).tempoMedioAtendimento(data.getTime("tempo_medio").toLocalTime()).idEndereco(data.getInt("id_endereco")).nome(data.getString("nome")).build();
+
+            barbearia.setBarbeiros(this.searchBarbeiros(id));
+        }
+
+        return barbearia;
+    }
+
     public Barbeiro[] searchBarbeiros(int id) throws SQLException {
         List<Barbeiro> barbeiros = new ArrayList<>();
 
