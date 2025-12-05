@@ -70,7 +70,7 @@
 
 		<div class="container">
             <div class="formu1">
-                <form name="cadastrar_barbeiro" method="post" action="#">
+                <form name="cadastrar_barbeiro" method="post" action="#" autocomplete="off">
 
                     <h2 class="titulo">Cadastrar funcionario</h2>
 

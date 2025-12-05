@@ -29,7 +29,7 @@
 
     <div class="container">
         <div class="formu1">
-            <form name="cadastrar_barbeiro" method="post" action="#">
+            <form name="cadastrar_barbeiro" method="post" action="#" autocomplete="off">
 
                 <h2 class="titulo">Cadastro</h2>
 
@@ -62,7 +62,7 @@
         </div>
 
         <div class="formu1">
-            <form name="login_barbeiro" method="post" action="#">
+            <form name="login_barbeiro" method="post" action="#" autocomplete="off">
 
                 <h2 class="titulo">Login</h2>
 

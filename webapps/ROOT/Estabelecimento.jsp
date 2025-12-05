@@ -48,7 +48,7 @@
     <main>
         <h1>Listagem de Estabelecimentos</h1>
         <div class="container">
-            <form name="cadastro_estabelecimento" method="post" action="#">
+            <form name="cadastro_estabelecimento" method="post" action="#" autocomplete="off">
 
                 <!-- NÃO ALTERAR O NAME DOS INPUTS ABAIXO -->
                 <input 
