@@ -4,6 +4,7 @@ import com.urbancut.core.Response;
 import com.urbancut.models.Barbearia;
 import com.urbancut.models.Barbeiro;
 import com.urbancut.models.DiaFuncionamento;
+import com.urbancut.repositories.AtendimentoRepository;
 import com.urbancut.repositories.BarbeariaRepository;
 import com.urbancut.repositories.BarbeiroRepository;
 import com.urbancut.repositories.DiaFuncionamentoRepository;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.text.Normalizer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -59,6 +61,11 @@ public class HorariosDisponiveisService {
             if (barbeiro.getHorarioBloqueado() != null) {
 
                 while ( barbeiro.getHorarioBloqueado().getInicio().minusMinutes(1).isAfter(horaAdicionada) ) {
+                    if ((new AtendimentoRepository()).isHorarioAgendado(LocalDateTime.of(LocalDate.parse(diaEscolhido),horaAdicionada),barbeiro.getIdBarbeiro()) == true) {
+                        horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
+                        continue;
+                    }
+
                     horariosDisponiveis.add(horaAdicionada);
                     horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
                 }
@@ -66,6 +73,11 @@ public class HorariosDisponiveisService {
                 horaAdicionada = barbeiro.getHorarioBloqueado().getFim();
 
                 while ( diaFuncionamento.getHoraFechamento().minusMinutes(barbearia.getTempoMedioAtendimento().getMinute()).isAfter(horaAdicionada) ) {
+                    if ((new AtendimentoRepository()).isHorarioAgendado(LocalDateTime.of(LocalDate.parse(diaEscolhido),horaAdicionada),barbeiro.getIdBarbeiro()) == true) {
+                        horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
+                        continue;
+                    }
+
                     horariosDisponiveis.add(horaAdicionada);
                     horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
                 }
@@ -73,6 +85,11 @@ public class HorariosDisponiveisService {
             } else {
 
                 while ( diaFuncionamento.getHoraFechamento().minusMinutes(1).isAfter(horaAdicionada) ) {
+                    if ((new AtendimentoRepository()).isHorarioAgendado(LocalDateTime.of(LocalDate.parse(diaEscolhido),horaAdicionada),barbeiro.getIdBarbeiro()) == true) {
+                        horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
+                        continue;
+                    }
+
                     horariosDisponiveis.add(horaAdicionada);
                     horaAdicionada = horaAdicionada.plusMinutes(barbearia.getTempoMedioAtendimento().getMinute());
                 }
