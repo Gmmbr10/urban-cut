@@ -47,7 +47,7 @@ public class HorarioValidator {
 
                     return diaFuncionamento.getHoraAbertura().minusMinutes(1).isBefore(dataHora.toLocalTime()) && diaFuncionamento.getHoraFechamento().isAfter(dataHora.toLocalTime());
                 case TUESDAY:
-                    if (!diaFuncionamento.getDiaSemana().equals("Terça-Feira")) {
+                    if (!diaFuncionamento.getDiaSemana().equals("Terca-Feira")) {
                         continue;
                     }
 
@@ -71,7 +71,7 @@ public class HorarioValidator {
 
                     return diaFuncionamento.getHoraAbertura().minusMinutes(1).isBefore(dataHora.toLocalTime()) && diaFuncionamento.getHoraFechamento().isAfter(dataHora.toLocalTime());
                 case SATURDAY:
-                    if (!diaFuncionamento.getDiaSemana().equals("Sábado")) {
+                    if (!diaFuncionamento.getDiaSemana().equals("Sabado")) {
                         continue;
                     }
 
