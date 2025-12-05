@@ -47,7 +47,7 @@ public class AtendimentoService extends Service<AtendimentoRepository> {
             return new Response<>(400, "Preencha todos os campos!", null);
         }
 
-        if (data.isAfter(LocalDate.now())) {
+        if (!data.isAfter(LocalDate.now())) {
             return new Response<>(400,"A data deve ser posterior ao dia atual!",null);
         }
 
