@@ -16,7 +16,7 @@ public class HorarioValidator {
     public static boolean isDentroDoHorarioBloqueado(LocalDateTime dataHora, int idBarbeiro) throws SQLException {
         Barbeiro barbeiro = new BarbeiroRepository().searchById(idBarbeiro);
 
-        if (barbeiro == null) return false;
+        if (barbeiro == null || barbeiro.getHorarioBloqueado() == null) return false;
 
         boolean isDentroDoHorarioBloqueado = barbeiro.getHorarioBloqueado().getInicio().minusMinutes(1).isBefore(dataHora.toLocalTime()) && barbeiro.getHorarioBloqueado().getFim().isAfter(dataHora.toLocalTime());
 
