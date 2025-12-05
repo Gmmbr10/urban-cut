@@ -1,87 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urban Cut - Agendamento</title>
-    <link rel="stylesheet" href="../PaginaAgendamento.css">
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Urban Cut - Agendamento</title>
+		<link rel="stylesheet" href="../PaginaAgendamento.css" />
+	</head>
+	<body>
+		<header>
+			<nav class="nav-bar">
+				<div class="nav-list">
+					<ul>
+						<li><a href="home.html" class="nav-link">Home</a></li>
+						<li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
+						<li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
+						<li>
+							<a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a>
+						</li>
+						<li>
+							<a href="CadastroEstabelecimento.html" class="nav-link"
+								>Estabelecimento</a
+							>
+						</li>
+						<li>
+							<a href="ListagemdoEstabelecimento.html" class="nav-link"
+								>Listagem Estabelecimento</a
+							>
+						</li>
+						<li>
+							<a href="PaginaAgendamento.html" class="nav-link">Agendamento</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
 
-    
-    <header>
-        <nav class="nav-bar">
-            <div class="nav-list">
-                <ul>
-                    <li><a href="home.html" class=nav-link>Home</a></li>
-                    <li><a href="Cliente.jsp" class="nav-link">Cliente</a></li>
-                    <li><a href="Barbeiro.jsp" class="nav-link">Barbeiro</a></li>
-                    <li><a href="ConfigurandoHorarios.jsp" class="nav-link">Horários</a></li>
-                    <li><a href="CadastroEstabelecimento.html" class="nav-link">Estabelecimento</a></li>
-                    <li><a href="ListagemdoEstabelecimento.html" class="nav-link">Listagem Estabelecimento</a></li>
-                    <li><a href="PaginaAgendamento.html" class="nav-link">Agendamento</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    
-    <h2>Agendar Horário</h2>
+		<h2>Agendar Horário</h2>
 
-    <div class="container">
-            <form name="agendamento" method="post" action="#">
+		<div class="container">
+			<form name="agendamento" method="post" action="#">
+				<p>Preencha os dados para realizar seu agendamento.</p>
 
-                <p>Preencha os dados para realizar seu agendamento.</p>
+				<!-- Selecionar o estabelecimento -->
+				<label>
+					Escolha o Estabelecimento:
+					<select name="id_estabelecimento">
+						<option value="">Selecione...</option>
+						<option value="1">Barbearia Urban Cut</option>
+						<option value="2">Barbearia Estilo Fino</option>
+						<!-- Você irá preencher com dados do banco -->
+					</select>
+				</label>
 
-                <!-- Selecionar o estabelecimento -->
-                    <label>
-                         Escolha o Estabelecimento:
-                        <select name="id_estabelecimento">
-                        <option value="">Selecione...</option>
-                        <option value="1">Barbearia Urban Cut</option>
-                        <option value="2">Barbearia Estilo Fino</option>
-                <!-- Você irá preencher com dados do banco -->
-                    </select>
-                 </label>
+				<!-- Selecionar o funcionário -->
+				<label>
+					Profissional:
+					<select name="id_funcionario">
+						<option value="">Selecione</option>
+						<option value="1">João - Barbeiro</option>
+						<option value="2">Carlos - Barbeiro</option>
+						<!-- Também virá do banco -->
+					</select>
+				</label>
 
-                <!-- Selecionar o funcionário -->
-                <label>
-                    Profissional:
-                   <select name="id_funcionario">
-                   <option value="">Selecione</option>
-                   <option value="1">João - Barbeiro</option>
-                   <option value="2">Carlos - Barbeiro</option>
-                    <!-- Também virá do banco -->
-                </select>
-                </label>
+				<!-- Data -->
+				<label>
+					Data:
+					<input type="date" name="data" required class="date-input" />
+				</label>
 
-             <!-- Data -->
-            <label>
-                Data:
-                <input type="date" name="data" required  class="date-input">
-            </label>
+				<!-- Hora -->
+				<label>
+					Hora:
+					<input type="time" name="hora" required class="time-input" />
+				</label>
 
-         <!-- Hora -->
-            <label>
-                Hora:
-                <input type="time" name="hora" required class="time-input">
-         </label>
+				<!-- Serviço -->
+				<label>
+					Serviço:
+					<select name="servico">
+						<option value="">Selecione...</option>
+						<option value="Corte">Corte de Cabelo</option>
+						<option value="Barba">Barba</option>
+						<option value="CorteBarba">Corte + Barba</option>
+						<option value="Sobrancelha">Sobrancelha</option>
+					</select>
+				</label>
 
-        <!-- Serviço -->
-            <label>
-                Serviço:
-                <select name="servico">
-                <option value="">Selecione...</option>
-                <option value="Corte">Corte de Cabelo</option>
-                <option value="Barba">Barba</option>
-                <option value="CorteBarba">Corte + Barba</option>
-                <option value="Sobrancelha">Sobrancelha</option>
-            </select>
-            </label>
+				<button type="submit" name="agendar" class="btn-agendar">
+					Agendar
+				</button>
 
-            <button type="submit" name="agendar" class="btn-agendar">Agendar</button>
-
-            <span>Mensagem de erro</span>
-    </form>
-    </div>
-</body>
+				<span>Mensagem de erro</span>
+			</form>
+		</div>
+	</body>
 </html>

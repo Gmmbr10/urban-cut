@@ -98,6 +98,8 @@
                             <li>Número: <%=endereco.getNumero()%></li>
                             <%=endereco.getComplemento() == null || endereco.getComplemento().isBlank() ? "" : "<li>Complemento: " + endereco.getComplemento() + "</li>"%>
                         </ul>
+
+                        <a class="btn1" href="Agendamento.jsp?idBarbearia=<%=b.getIdBarbearia()%>">Agendar horário</a>
                     </div>
 
                 <%
