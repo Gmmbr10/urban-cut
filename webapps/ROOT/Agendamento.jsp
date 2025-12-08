@@ -86,7 +86,7 @@
 								
 									<h2 style="margin: 0;"><%=b.getNome()%></h2>
 
-									<a href="../Agendamento.jsp?idBarbearia=<%=b.getIdBarbearia()%>&idBarbeiro=<%=b.getIdBarbearia()%>" class="btn1">Ver disponibilidade</a>
+									<a href="../Agendamento.jsp?idBarbearia=<%=b.getIdBarbearia()%>&idBarbeiro=<%=b.getIdBarbeiro()%>" class="btn1">Ver disponibilidade</a>
 
 								</div>
 
