@@ -46,7 +46,7 @@
 
 
     <main>
-        <h1>Listagem de Estabelecimentos</h1>
+        <h1>Cadastrar Estabelecimento</h1>
         <div class="container">
             <form name="cadastro_estabelecimento" method="post" action="#" autocomplete="off">
 
